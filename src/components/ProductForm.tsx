@@ -1,22 +1,10 @@
 import React, { FormEvent, useState } from 'react'
-import { CSVLink } from 'react-csv'
-
-const arr = [
-  {
-    'Name': 'john',
-    'Phone': '12354'
-  },
-  {
-    'Name': 'elton',
-    'Phone': '222333'
-  },
-
-]
+//import { CSVLink } from 'react-csv'
+import { db } from '../models/db';
 
 const ProductForm = () => {
     const [name, setname] = useState('')
     const [phone, setphone] = useState('')
-    const [data, setdata] = useState(arr)
 
     /***
      * * handleSubmit
@@ -25,12 +13,21 @@ const ProductForm = () => {
      * TODO - Add file share option to whastapp or email
      */
 
-    const handleSubmit = (e: FormEvent<HTMLElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLElement>) => {
       e.preventDefault()
 
-      setdata([...data, {'Name': name, 'Phone': phone}])
-      console.log(data)
+      try {
+        //setdata([...data, {'Name': name, 'Phone': phone}])
+        const id = await db.orders.add({
+          name,
+          phone
+        })
+        console.log(id)
+      } catch (error) {
+        console.log(error)
+      }
     }
+    
     return (
         <>
         <form onSubmit={handleSubmit}>
@@ -52,7 +49,7 @@ const ProductForm = () => {
         </label>
         <button type='submit'>Add</button>
         </form>
-        <CSVLink data={data}>Download</CSVLink>
+        {/* <CSVLink data={data}>Download</CSVLink> */}
         </>
     )
 }
