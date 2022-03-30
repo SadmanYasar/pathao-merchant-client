@@ -1,22 +1,21 @@
 import Dexie, { Table } from 'dexie';
+import { populate } from './populate';
+import { ShipmentList } from './ShipmentList';
+import { ShipmentOrder } from './ShipmentOrder';
 
-export interface Order {
-  id?: number;
-  name: string;
-  phone: string;
-}
-
-export class OrderDB extends Dexie {
-  // 'orders' is added by dexie when declaring the stores()
-  // We just tell the typing system this is the case
-  orders!: Table<Order>; 
+export class ShipmentDB extends Dexie {
+  shipmentLists!: Table<ShipmentList, number>
+  shipmentOrders!: Table<ShipmentOrder, number>; 
 
   constructor() {
-    super('OrderDB');
+    super('ShipmentDB');
     this.version(1).stores({
-      orders: '++id, name, phone' // Primary key and indexed props
+      shipmentLists: '++id',
+      shipmentOrders: '++id, shipmentListId', // Primary key and indexed props
     });
   }
 }
 
-export const db = new OrderDB();
+export const db = new ShipmentDB();
+
+db.on('populate', populate);

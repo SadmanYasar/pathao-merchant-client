@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderList from './components/OrderList';
+import ShipmentLists from './components/ShipmentLists';
 import ProductForm from './components/ProductForm';
 
 const App = () => {
@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="App">
       <ProductForm />
-      <OrderList />
+      <ShipmentLists />
     </div>
   );
 }

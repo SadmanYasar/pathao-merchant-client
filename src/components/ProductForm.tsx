@@ -18,7 +18,7 @@ const ProductForm = () => {
 
       try {
         //setdata([...data, {'Name': name, 'Phone': phone}])
-        const id = await db.orders.add({
+        const id = await db.shipmentOrders.add({
           name,
           phone
         })
