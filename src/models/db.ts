@@ -9,9 +9,9 @@ export class ShipmentDB extends Dexie {
 
   constructor() {
     super('ShipmentDB');
-    this.version(1).stores({
+    this.version(2).stores({
       shipmentLists: '++id',
-      shipmentOrders: '++id, shipmentListId', // Primary key and indexed props
+      shipmentOrders: '++id, shipmentListId',
     });
   }
 }

@@ -1,24 +1,21 @@
 import React, { FormEvent, useState } from 'react'
-//import { CSVLink } from 'react-csv'
 import { db } from '../models/db';
+import { ShipmentList } from '../models/ShipmentList';
 
-const ProductForm = () => {
+interface Props {
+  shipmentList: ShipmentList;
+}
+
+const ProductForm = ({ shipmentList }: Props) => {
     const [name, setname] = useState('')
     const [phone, setphone] = useState('')
-
-    /***
-     * * handleSubmit
-     * * Complete - Add download option of csv
-     * TODO - Add indexedDB
-     * TODO - Add file share option to whastapp or email
-     */
 
     const handleSubmit = async (e: FormEvent<HTMLElement>) => {
       e.preventDefault()
 
       try {
-        //setdata([...data, {'Name': name, 'Phone': phone}])
         const id = await db.shipmentOrders.add({
+          shipmentListId: shipmentList.id,
           name,
           phone
         })
@@ -49,7 +46,6 @@ const ProductForm = () => {
         </label>
         <button type='submit'>Add</button>
         </form>
-        {/* <CSVLink data={data}>Download</CSVLink> */}
         </>
     )
 }
