@@ -1,12 +1,11 @@
 import React, { FormEvent, useState } from 'react'
 import { db } from '../models/db';
-import { ShipmentList } from '../models/ShipmentList';
 
 interface Props {
-  shipmentList: ShipmentList;
+  shipmentListId: number
 }
 
-const ProductForm = ({ shipmentList }: Props) => {
+const ProductForm = ({ shipmentListId }: Props) => {
     const [name, setname] = useState('')
     const [phone, setphone] = useState('')
 
@@ -15,11 +14,14 @@ const ProductForm = ({ shipmentList }: Props) => {
 
       try {
         const id = await db.shipmentOrders.add({
-          shipmentListId: shipmentList.id,
+          shipmentListId: shipmentListId,
           name,
           phone
         })
+        setname('')
+        setphone('')
         console.log(id)
+
       } catch (error) {
         console.log(error)
       }

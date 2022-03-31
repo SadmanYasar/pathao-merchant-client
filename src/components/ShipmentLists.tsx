@@ -1,9 +1,9 @@
 import React from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../models/db'
-import ShipmentListView from './ShipmentListView'
+import { Link } from 'react-router-dom'
 
-const ShipmentLists = () => {
+export const ShipmentLists = () => {
     const lists = useLiveQuery(
         () => db.shipmentLists.toArray()
     )
@@ -12,9 +12,10 @@ const ShipmentLists = () => {
 
     return(
         <>
-        {lists.map(li => <ShipmentListView  key={li.id} shipmentList={li}/>)}
+        <h1>Shipments</h1>
+        {/* {lists.map(li => <ShipmentListView  key={li.id} shipmentList={li}/>)} */}
+        {lists.map(li => 
+            <Link key={li.id} to={`/shipments/${li.id}`}>{li.title}</Link>)}
         </>
     )
 }
-
-export default ShipmentLists

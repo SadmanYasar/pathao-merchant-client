@@ -1,21 +1,20 @@
 import React from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../models/db'
-import { ShipmentList } from '../models/ShipmentList'
-import ProductForm from './ProductForm'
 import { CSVLink } from 'react-csv'
+import { useParams } from 'react-router-dom'
+import ProductForm from './ProductForm'
 
-interface Props {
-    shipmentList: ShipmentList
-}
+const ShipmentListView = () => {
 
-const ShipmentListView = ({ shipmentList }: Props) => {
+    const id = Number(useParams().id);
+
     const items = useLiveQuery(
         () => db.shipmentOrders
-            .where({ shipmentListId: shipmentList.id })
+            .where({ shipmentListId: id })
             .toArray()
         ,
-        [shipmentList.id]
+        [id]
     )
 
     if (!items) return null;
@@ -27,11 +26,10 @@ const ShipmentListView = ({ shipmentList }: Props) => {
 
     return(
         <>
-        <h2>{shipmentList.title}</h2>
         <ul>
             {items.map(i => <li key={i.id}>{i.name} {i.phone}</li>)}
         </ul>
-        <ProductForm shipmentList={shipmentList} />
+        <ProductForm shipmentListId={id} />
         <CSVLink data={data}>Download</CSVLink>
         </>
     )
