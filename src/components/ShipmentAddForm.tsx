@@ -7,12 +7,10 @@ const ShipmentAddForm = () => {
     const handleSubmit = async (e : FormEvent<HTMLElement>) => {
         e.preventDefault()
         try {
-            const id: number = await db.shipmentLists
+            await db.shipmentLists
                 .add({ title: shipmentTitle })
 
             setshipmentTitle('')
-            console.log(id)
-
         } catch (e: unknown) {
             console.log(e)
         }

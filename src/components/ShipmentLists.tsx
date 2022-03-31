@@ -19,6 +19,13 @@ export const ShipmentLists = () => {
             {lists.map(li => 
                 <li key={li.id}>
                     <Link to={`/shipments/${li.id}`}>{li.title}</Link>
+                    <button 
+                        type='button' 
+                        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                        onClick={() => db.deleteShipmentList(li.id!)}
+                    >
+                        Delete
+                    </button>
                 </li>)}
         </ul>
         </>
