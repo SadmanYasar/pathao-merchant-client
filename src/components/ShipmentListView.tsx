@@ -5,7 +5,7 @@ import { CSVLink } from 'react-csv'
 import { useParams } from 'react-router-dom'
 import ProductForm from './ProductForm'
 
-const ShipmentListView = () => {
+const ShipmentListView = (): JSX.Element | null => {
 
     const id = Number(useParams().id);
 

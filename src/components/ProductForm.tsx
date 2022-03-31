@@ -5,15 +5,15 @@ interface Props {
   shipmentListId: number
 }
 
-const ProductForm = ({ shipmentListId }: Props) => {
+const ProductForm = ({ shipmentListId }: Props): JSX.Element => {
     const [name, setname] = useState('')
     const [phone, setphone] = useState('')
 
-    const handleSubmit = async (e: FormEvent<HTMLElement>) => {
+    const handleSubmit = async (e : FormEvent<HTMLElement>) => {
       e.preventDefault()
 
       try {
-        const id = await db.shipmentOrders.add({
+        const id: number = await db.shipmentOrders.add({
           shipmentListId: shipmentListId,
           name,
           phone
@@ -22,7 +22,7 @@ const ProductForm = ({ shipmentListId }: Props) => {
         setphone('')
         console.log(id)
 
-      } catch (error) {
+      } catch (error: unknown) {
         console.log(error)
       }
     }

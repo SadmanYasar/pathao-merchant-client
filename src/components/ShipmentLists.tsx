@@ -2,6 +2,7 @@ import React from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../models/db'
 import { Link } from 'react-router-dom'
+import ShipmentAddForm from './ShipmentAddForm'
 
 export const ShipmentLists = () => {
     const lists = useLiveQuery(
@@ -13,9 +14,13 @@ export const ShipmentLists = () => {
     return(
         <>
         <h1>Shipments</h1>
-        {/* {lists.map(li => <ShipmentListView  key={li.id} shipmentList={li}/>)} */}
-        {lists.map(li => 
-            <Link key={li.id} to={`/shipments/${li.id}`}>{li.title}</Link>)}
+        <ShipmentAddForm />
+        <ul>
+            {lists.map(li => 
+                <li key={li.id}>
+                    <Link to={`/shipments/${li.id}`}>{li.title}</Link>
+                </li>)}
+        </ul>
         </>
     )
 }
