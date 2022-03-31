@@ -13,14 +13,13 @@ const ProductForm = ({ shipmentListId }: Props): JSX.Element => {
       e.preventDefault()
 
       try {
-        const id: number = await db.shipmentOrders.add({
+        await db.shipmentOrders.add({
           shipmentListId: shipmentListId,
           name,
           phone
         })
         setname('')
         setphone('')
-        console.log(id)
 
       } catch (error: unknown) {
         console.log(error)

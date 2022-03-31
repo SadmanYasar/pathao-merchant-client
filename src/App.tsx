@@ -10,7 +10,7 @@ import ShipmentListView from './components/ShipmentListView';
 
 const App = () => {
   /**
-   * TODO - Add shipment list button
+   * *Done - Add shipment list button
    * TODO - Add CRUD operations for each shipment and order
    * *Done - Add React-Router
    */

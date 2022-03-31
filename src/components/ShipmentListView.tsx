@@ -17,7 +17,14 @@ const ShipmentListView = (): JSX.Element | null => {
         [id]
     )
 
-    if (!items) return null;
+    const valid = useLiveQuery(
+        () => db.shipmentLists
+            .get(id)
+    )
+
+    if (!items || !valid) {
+        return null
+    }
 
     const data = items.map(i => ({
         name: i.name,
@@ -27,7 +34,15 @@ const ShipmentListView = (): JSX.Element | null => {
     return(
         <>
         <ul>
-            {items.map(i => <li key={i.id}>{i.name} {i.phone}</li>)}
+            {items?.map(i => <li key={i.id}>
+                {i.name} {i.phone} 
+                    <button 
+                        type='button' 
+                        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                        onClick={() => db.shipmentOrders.delete(i.id!)}>
+                        Delete
+                    </button>
+            </li>)}
         </ul>
         <ProductForm shipmentListId={id} />
         <CSVLink data={data}>Download</CSVLink>

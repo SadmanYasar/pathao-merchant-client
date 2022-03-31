@@ -14,6 +14,16 @@ export class ShipmentDB extends Dexie {
       shipmentOrders: '++id, shipmentListId',
     });
   }
+
+  deleteShipmentList(shipmentListId: number) {
+    return this.transaction('rw', this.shipmentLists, this.shipmentOrders, () => {
+      //finds the fields where shipmentlist id matches param
+      //then deletes them
+      //and deletes the shipment list
+      this.shipmentOrders.where({ shipmentListId }).delete()
+      this.shipmentLists.delete(shipmentListId)
+    })
+  }
 }
 
 export const db = new ShipmentDB();
