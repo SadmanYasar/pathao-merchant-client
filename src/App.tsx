@@ -6,12 +6,12 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import ShipmentListView from './components/ShipmentListView';
+import ShipmentOrdersLists from './components/ShipmentOrderListsView';
 
 const App = () => {
   /**
    * *Done - Add shipment list button
-   * TODO - Add CRUD operations for each shipment and order
+   * TODO - Add Update operation for each shipment and order
    * *Done - Add React-Router
    */
 
@@ -23,7 +23,7 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={<ShipmentLists />} />
-        <Route path='/shipments/:id' element={<ShipmentListView />} />
+        <Route path='/shipments/:id' element={<ShipmentOrdersLists />} />
       </Routes>
     </Router>
     
