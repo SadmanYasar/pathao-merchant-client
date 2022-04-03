@@ -11,7 +11,7 @@ import ShipmentOrdersLists from './components/ShipmentOrderListsView';
 const App = () => {
   /**
    * *Done - Add shipment list button
-   * TODO - Add Update operation for each shipment and order
+   * *Done - Add Update operation for each shipment and order
    * *Done - Add React-Router
    */
 

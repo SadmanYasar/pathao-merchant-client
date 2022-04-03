@@ -1,39 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../models/db'
 import { CSVLink } from 'react-csv'
 import { useParams } from 'react-router-dom'
 import ProductForm from './ProductForm'
-import { ShipmentOrder } from '../models/ShipmentOrder'
-
-interface UpdateButtonProps {
-    item: ShipmentOrder
-}
-
-const UpdateButton = ({ item }: UpdateButtonProps) => {
-    const [name, setname] = useState(item.name)
-
-    return(
-        <>
-        <input 
-            type='text' 
-            value={name} 
-            onChange={({ target }) => setname(target.value)} />
-        <button
-            type='button'
-            onClick={() => {
-                db.shipmentOrders.update(
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    item.id!,
-                    { name: name }
-                )
-            }}
-            >
-                Update
-        </button>
-        </>
-    )
-}
+import UpdateOrderButton from './UpdateOrderButton'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {
 
@@ -74,7 +45,7 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                         onClick={() => db.shipmentOrders.delete(i.id!)}>
                         Delete
                     </button>
-                    <UpdateButton item={i} />
+                    <UpdateOrderButton item={i} />
             </li>)}
         </ul>
         <ProductForm shipmentListId={id} />
