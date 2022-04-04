@@ -1,5 +1,4 @@
 import React from 'react';
-import { ShipmentLists } from './components/ShipmentLists';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,12 +6,14 @@ import {
   Link
 } from 'react-router-dom'
 import ShipmentOrdersLists from './components/ShipmentOrderListsView';
+import ShipmentListPage from './components/ShipmentListPage/ShipmentLists';
 
 const App = () => {
   /**
    * *Done - Add shipment list button
    * *Done - Add Update operation for each shipment and order
    * *Done - Add React-Router
+   * TODO - Add search funtionality
    */
 
   return (
@@ -22,7 +23,7 @@ const App = () => {
       </nav>
 
       <Routes>
-        <Route path='/' element={<ShipmentLists />} />
+        <Route path='/' element={<ShipmentListPage />} />
         <Route path='/shipments/:id' element={<ShipmentOrdersLists />} />
       </Routes>
     </Router>

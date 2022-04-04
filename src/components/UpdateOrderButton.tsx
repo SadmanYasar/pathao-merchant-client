@@ -7,7 +7,7 @@ interface UpdateButtonProps {
 }
 
 const UpdateOrderButton = ({ item }: UpdateButtonProps) => {
-    const [name, setname] = useState(item.name)
+    const [name, setname] = useState<string>(item.name)
 
     return(
         <>
