@@ -6,14 +6,14 @@ import {
   Link
 } from 'react-router-dom'
 import ShipmentOrdersLists from './components/ShipmentOrderListsView';
-import ShipmentListPage from './components/ShipmentListPage/ShipmentLists';
+import ShipmentListPage from './components/ShipmentListPage/index';
 
 const App = () => {
   /**
-   * *Done - Add shipment list button
-   * *Done - Add Update operation for each shipment and order
-   * *Done - Add React-Router
-   * TODO - Add search funtionality
+   * TODO - Change shipment types to match spreadsheet entries
+   * TODO - Exhaustive type checking if applicable
+   * TODO - Use formik
+   * TODO - Use Bootstrap/ChakraUI/MaterialUI
    */
 
   return (
