@@ -10,7 +10,7 @@ import ShipmentListPage from './components/ShipmentListPage/index';
 
 const App = () => {
   /**
-   * TODO - Change shipment types to match spreadsheet entries
+   * *DONE - Change shipment types to match spreadsheet entries
    * TODO - Exhaustive type checking if applicable
    * TODO - Use formik
    * TODO - Use Bootstrap/ChakraUI/MaterialUI

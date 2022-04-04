@@ -1,13 +1,32 @@
 import React, { FormEvent, useState } from 'react'
 import { db } from '../models/db';
+import { ShipmentOrder } from '../models/ShipmentOrder';
 
 interface Props {
   shipmentListId: number
 }
 
+const initialValues: ShipmentOrder = {
+  AmountToCollect: 0,
+  ItemQuantity: 1,
+  ItemType: 'parcel',
+  ItemWeight: 0.46,
+  RecipientAddress: '',
+  RecipientCity: '',
+  RecipientName: '',
+  RecipientPhone: '',
+  StoreName: 'I Am Your Hope',
+  RecipientZone: '',
+  itemDescription: ''
+}
+
 const ProductForm = ({ shipmentListId }: Props): JSX.Element => {
-    const [name, setname] = useState('')
-    const [phone, setphone] = useState('')
+    const [fields, setfields] = useState<ShipmentOrder>(initialValues)
+
+    const style = {
+      margin: '10px',
+      padding: '10px'
+    }
 
     const handleSubmit = async (e : FormEvent<HTMLElement>) => {
       e.preventDefault()
@@ -15,35 +34,41 @@ const ProductForm = ({ shipmentListId }: Props): JSX.Element => {
       try {
         await db.shipmentOrders.add({
           shipmentListId: shipmentListId,
-          name,
-          phone
+          ...fields
         })
-        setname('')
-        setphone('')
+        setfields(initialValues)
 
       } catch (error: unknown) {
         console.log(error)
       }
     }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleChange = ({ target }: any) => setfields({
+      ...fields,
+      [target.name]: target.value
+    })
     
     return (
         <>
         <form onSubmit={handleSubmit}>
         <label>
-          Name:
+          Item Type:
           <input 
+            style={style}
             type='text' 
-            id='name' 
-            value={name}
-            onChange={({target}) => setname(target.value)}/>
+            name='ItemType'
+            value={fields.ItemType}
+            onChange={handleChange}/>
         </label>
         <label>
-          Phone:
+          Store Name:
           <input 
+            style={style}
             type='text' 
-            id='phone' 
-            value={phone}
-            onChange={({target}) => setphone(target.value)}/>
+            name='StoreName' 
+            value={fields.StoreName}
+            onChange={handleChange}/>
         </label>
         <button type='submit'>Add</button>
         </form>

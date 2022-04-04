@@ -7,21 +7,33 @@ interface UpdateButtonProps {
 }
 
 const UpdateOrderButton = ({ item }: UpdateButtonProps) => {
-    const [name, setname] = useState<string>(item.name)
+    const [fields, setfields] = useState<ShipmentOrder>(item)
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleChange = ({ target }: any) => setfields({
+        ...fields,
+        [target.name]: target.value
+    })
+
+    const style = {
+        margin: '10px',
+        padding: '10px'
+    }
 
     return(
         <>
         <input 
+            style={style}
             type='text' 
-            value={name} 
-            onChange={({ target }) => setname(target.value)} />
+            name='RecipientName'
+            value={fields.RecipientName} 
+            onChange={handleChange} />
         <button
             type='button'
             onClick={() => {
                 db.shipmentOrders.update(
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    item.id!,
-                    { name: name }
+                    Number(item.id),
+                    { RecipientName: fields.RecipientName }
                 )
             }}
             >

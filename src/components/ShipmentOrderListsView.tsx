@@ -4,6 +4,7 @@ import { db } from '../models/db'
 import { CSVLink } from 'react-csv'
 import { useParams } from 'react-router-dom'
 import ProductForm from './ProductForm'
+import { FormattedCSVData } from '../types'
 import UpdateOrderButton from './UpdateOrderButton'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {
@@ -29,20 +30,17 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
         return null
     }
 
-    const data = items.map(i => ({
-        name: i.name,
-        phone: i.phone
-    }))
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const data: FormattedCSVData[] = items.map(({id, shipmentListId, itemDescription, ...rest}) => rest)
 
     return(
         <>
         <ul>
             {items?.map(i => <li key={i.id}>
-                {i.name} {i.phone} 
+                {i.RecipientName} - {i.RecipientPhone} - {i.itemDescription}
                     <button 
                         type='button' 
-                        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                        onClick={() => db.shipmentOrders.delete(i.id!)}>
+                        onClick={() => db.shipmentOrders.delete(Number(i.id))}>
                         Delete
                     </button>
                     <UpdateOrderButton item={i} />

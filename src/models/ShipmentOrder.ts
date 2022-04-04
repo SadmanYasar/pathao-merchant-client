@@ -1,6 +1,15 @@
 export interface ShipmentOrder {
     id?: number;
     shipmentListId?: number;
-    name: string;
-    phone: string;
+    itemDescription: string;
+    ItemType: 'parcel' | 'document';
+    StoreName: string;
+    RecipientName: string;
+    RecipientPhone: string;
+    RecipientCity: string;
+    RecipientZone?: string;
+    RecipientAddress: string;
+    AmountToCollect: number;
+    ItemQuantity: number;
+    ItemWeight: number;
 }
