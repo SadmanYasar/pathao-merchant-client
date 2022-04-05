@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^1.8.7",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -13,6 +16,7 @@
     "dexie": "^3.2.1",
     "dexie-react-hooks": "^1.1.1",
     "formik": "^2.2.9",
+    "framer-motion": "^6.2.8",
     "react": "^17.0.2",
     "react-csv": "^2.2.2",
     "react-dom": "^17.0.2",
