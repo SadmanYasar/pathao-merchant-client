@@ -11,13 +11,13 @@ import { Container } from '@chakra-ui/react';
 const App = () => {
   /**
    * *DONE - Change shipment types to match spreadsheet entries
-   * TODO - Exhaustive type checking if applicable
+   * TODO - Add error component
    * TODO - Use formik
    * TODO - Use Bootstrap/ChakraUI/MaterialUI
    */
 
   return (
-    <Container maxW="container.xl" p={0} bg='blue.600' centerContent>
+    <Container maxW="container.xl" p={0} /* bg='green.100' */>
     <Router>
       <Routes>
         <Route path='/' element={<ShipmentListPage />} />

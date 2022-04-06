@@ -1,4 +1,6 @@
+import { Button, Flex, FormControl, GridItem, Heading, Input, SimpleGrid, VStack } from "@chakra-ui/react"
 import { useLiveQuery } from "dexie-react-hooks"
+import { motion } from "framer-motion"
 import { useState, useEffect, FormEvent } from "react"
 import { db } from "../../models/db"
 import { ShipmentList } from "../../models/ShipmentList"
@@ -38,20 +40,57 @@ const SearchOrAddShipment = () => {
             //TODO - ADD ERROR COMPONENT
         }
     }
+
+    const colspan = 2
     
     return(
-        <>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type='text'
-                    value={title}
-                    onChange={({ target }) => settitle(target.value)}
-                    placeholder='search or add shipment'
-                />
-                <button type='submit'>Add shipment</button>
-            </form>
-            <ShipmentLists list={filters} />
-        </>
+        <Flex 
+            flexDirection={'column'}
+            height='100vh'
+            py={[5, 10, 20]}
+            alignItems="center">
+            <VStack
+                w={{ base: 'full', md: '50%' }}
+                h='full'
+                p={10}
+                spacing={10}>
+                <Heading as={'h1'} size='2xl'>Shipments</Heading>
+                <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
+                    <GridItem colSpan={colspan}>
+                        <FormControl onSubmit={handleSubmit}>
+                                <Input 
+                                    id='title' 
+                                    type='text' 
+                                    value={title}
+                                    size="lg"
+                                    onChange={({ target }) => settitle(target.value)}
+                                    placeholder='Search or add a shipment'
+                                />
+                        </FormControl>
+                    </GridItem>
+                    <GridItem colSpan={colspan}>
+                        <motion.div whileTap={{ scale: 0.9 }}>
+                            <Button
+                                size="lg"
+                                w='full'
+                                id='login-button'
+                                type="submit"
+                                onClick={handleSubmit}
+                                bgGradient='linear(to-r, teal.500, green.500)'
+                                _hover={{
+                                bgGradient: 'linear(to-r, red.500, yellow.500)',
+                                }}
+                                _active={{
+                                bgGradient: 'linear(to-r, red.500, yellow.500)',
+                                }}>
+                                Add
+                            </Button>
+                        </motion.div>
+                    </GridItem>
+                </SimpleGrid>
+                <ShipmentLists list={filters} />
+            </VStack>
+        </Flex>
     )
 }
 
