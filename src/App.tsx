@@ -3,10 +3,10 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from 'react-router-dom'
 import ShipmentOrdersLists from './components/ShipmentOrderListsView';
 import ShipmentListPage from './components/ShipmentListPage/index';
+import { Container } from '@chakra-ui/react';
 
 const App = () => {
   /**
@@ -17,17 +17,14 @@ const App = () => {
    */
 
   return (
+    <Container maxW="container.xl" p={0} bg='blue.600' centerContent>
     <Router>
-      <nav>
-        <Link to='/'>Home</Link>
-      </nav>
-
       <Routes>
         <Route path='/' element={<ShipmentListPage />} />
         <Route path='/shipments/:id' element={<ShipmentOrdersLists />} />
       </Routes>
     </Router>
-    
+    </Container>
   );
 }
 

@@ -1,12 +1,18 @@
-import ShipmentAddForm from "../ShipmentAddForm"
+import { Flex, Heading } from "@chakra-ui/react"
+//import ShipmentAddForm from "../ShipmentAddForm"
 import SearchShipment from "./SearchShipment"
 
 const ShipmentListPage = () => {
     return(
         <>
-            <h1>Shipments</h1>
+        <Flex 
+            bg='blue.400'
+            flexDirection={'column'}
+            height='100vh'>
+            <Heading paddingBottom={'20px'}>Shipments</Heading>
             <SearchShipment />
-            <ShipmentAddForm />
+            {/* <ShipmentAddForm /> */}
+        </Flex>
         </>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../models/db'
 import { CSVLink } from 'react-csv'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ProductForm from './ProductForm'
 import { FormattedCSVData } from '../types'
 import UpdateOrderButton from './UpdateOrderButton'
@@ -35,6 +35,9 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
 
     return(
         <>
+        <nav>
+            <Link to='/'>Home</Link>
+        </nav>
         <ul>
             {items?.map(i => <li key={i.id}>
                 {i.RecipientName} - {i.RecipientPhone} - {i.itemDescription}
