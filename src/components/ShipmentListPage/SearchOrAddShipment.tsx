@@ -4,7 +4,7 @@ import { db } from "../../models/db"
 import { ShipmentList } from "../../models/ShipmentList"
 import ShipmentLists from "./ShipmentLists"
 
-const SearchShipment = () => {
+const SearchOrAddShipment = () => {
     const lists = useLiveQuery(
         () => {
             return db.shipmentLists.toArray()
@@ -33,8 +33,6 @@ const SearchShipment = () => {
         try {
             await db.shipmentLists
                 .add({ title: title })
-
-            settitle('')
         } catch (e: unknown) {
             console.log(e)
             //TODO - ADD ERROR COMPONENT
@@ -57,4 +55,4 @@ const SearchShipment = () => {
     )
 }
 
-export default SearchShipment
+export default SearchOrAddShipment

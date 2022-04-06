@@ -1,6 +1,6 @@
 import { Flex, Heading } from "@chakra-ui/react"
 //import ShipmentAddForm from "../ShipmentAddForm"
-import SearchShipment from "./SearchShipment"
+import SearchOrAddShipment from "./SearchOrAddShipment"
 
 const ShipmentListPage = () => {
     return(
@@ -10,7 +10,7 @@ const ShipmentListPage = () => {
             flexDirection={'column'}
             height='100vh'>
             <Heading paddingBottom={'20px'}>Shipments</Heading>
-            <SearchShipment />
+            <SearchOrAddShipment />
             {/* <ShipmentAddForm /> */}
         </Flex>
         </>
