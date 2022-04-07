@@ -29,6 +29,7 @@ const ShipmentLists = ({ list }: ShipmentListsProps): JSX.Element => {
                         size='lg'
                         w='full'
                         type='button'
+                        bgColor={'red.400'}
                         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                         onClick={() => db.deleteShipmentList(li.id!)}>
                         Delete
