@@ -1,27 +1,41 @@
 import { db } from '../../models/db'
 import { Link } from 'react-router-dom'
 import { ShipmentList } from '../../models/ShipmentList'
+import { Flex, Box, Button, Text } from '@chakra-ui/react'
 
 interface ShipmentListsProps {
     list: ShipmentList[]
 }
 
-const ShipmentLists = ({ list }: ShipmentListsProps) => {
+const ShipmentLists = ({ list }: ShipmentListsProps): JSX.Element => {
     return(
         <>
-        <ul>
-            {list.map(li => 
-                <li key={li.id}>
-                    <Link to={`/shipments/${li.id}`}>{li.title}</Link>
-                    <button 
-                        type='button' 
+            <Flex
+                width='full'
+                justifyContent='center'
+                direction='column'>
+            {list
+                .map(li =>
+                <Box
+                    key={li.id}
+                    p={5}
+                    m={3}
+                    css={{ boxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
+                    }}>
+                    <Link to={`/shipments/${li.id}`}>
+                        <Text fontSize='4xl' isTruncated>{li.title}</Text>
+                    </Link>
+                    <Button
+                        size='lg'
+                        w='full'
+                        type='button'
                         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                        onClick={() => db.deleteShipmentList(li.id!)}
-                    >
+                        onClick={() => db.deleteShipmentList(li.id!)}>
                         Delete
-                    </button>
-                </li>)}
-        </ul>
+                    </Button>
+                </Box>
+            )}
+            </Flex>
         </>
     )
 }

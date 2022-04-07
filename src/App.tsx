@@ -14,10 +14,11 @@ const App = () => {
    * TODO - Add error component
    * TODO - Use formik
    * TODO - Use Bootstrap/ChakraUI/MaterialUI
+   * TODO - Add dark mode
    */
 
   return (
-    <Container maxW="container.xl" p={0} /* bg='green.100' */>
+    <Container maxW="container.xl" p={0}>
     <Router>
       <Routes>
         <Route path='/' element={<ShipmentListPage />} />
