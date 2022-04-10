@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { useState, useEffect, FormEvent } from "react"
 import { db } from "../../models/db"
 import { ShipmentList } from "../../models/ShipmentList"
-import ClearButton from "./ClearButton"
+import ClearButton from "../ClearButton"
 import ShipmentLists from "./ShipmentLists"
 
 const SearchOrAddShipment = (): JSX.Element => {
@@ -59,7 +59,7 @@ const SearchOrAddShipment = (): JSX.Element => {
     return(
         <Flex 
             flexDirection={'column'}
-            height='100vh'
+            height='full'
             py={[5, 10, 20]}
             alignItems="center">
             <VStack
