@@ -1,29 +1,11 @@
-import { CloseIcon } from "@chakra-ui/icons"
 import { Button, Flex, FormControl, GridItem, Heading, Input, InputGroup, InputRightElement, SimpleGrid, VStack } from "@chakra-ui/react"
 import { useLiveQuery } from "dexie-react-hooks"
 import { motion } from "framer-motion"
 import { useState, useEffect, FormEvent } from "react"
 import { db } from "../../models/db"
 import { ShipmentList } from "../../models/ShipmentList"
+import ClearButton from "./ClearButton"
 import ShipmentLists from "./ShipmentLists"
-
-interface ClearButtonProps {
-    visible: boolean;
-    onClick: () => void
-}
-
-const ClearButton = ({ visible, onClick }: ClearButtonProps) => {
-    return(
-        <>
-            {visible && <Button 
-                            colorScheme='red' 
-                            variant='link'
-                            onClick={onClick}>
-                            <CloseIcon />
-                        </Button>}
-        </>
-    )
-}
 
 const SearchOrAddShipment = (): JSX.Element => {
     const lists = useLiveQuery(
@@ -116,10 +98,12 @@ const SearchOrAddShipment = (): JSX.Element => {
                                 bgColor={'red.400'}
                                 //bgGradient='linear(to-r, teal.500, green.500)'
                                 _hover={{
-                                bgGradient: 'linear(to-r, red.500, yellow.500)',
+                                    bgColor: 'red.500'
+                                //bgGradient: 'linear(to-r, red.500, yellow.500)',
                                 }}
                                 _active={{
-                                bgGradient: 'linear(to-r, red.500, yellow.500)',
+                                //bgGradient: 'linear(to-r, red.500, yellow.500)',
+                                    bgColor: 'red.500'
                                 }}>
                                 Add
                             </Button>
