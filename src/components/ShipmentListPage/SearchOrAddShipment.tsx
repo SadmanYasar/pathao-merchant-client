@@ -70,7 +70,7 @@ const SearchOrAddShipment = (): JSX.Element => {
                 <Heading as={'h1'} size='2xl'>Shipments</Heading>
                 <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
                     <GridItem colSpan={colspan}>
-                        <FormControl onSubmit={handleSubmit}>
+                        <FormControl>
                             <InputGroup>
                                 <Input 
                                     id='title' 
@@ -87,7 +87,7 @@ const SearchOrAddShipment = (): JSX.Element => {
                             </InputGroup>
                         </FormControl>
                     </GridItem>
-                    <GridItem colSpan={colspan}>
+                    <GridItem  colSpan={colspan}>
                         <motion.div whileTap={{ scale: 0.9 }}>
                             <Button
                                 size="lg"
@@ -96,17 +96,22 @@ const SearchOrAddShipment = (): JSX.Element => {
                                 type="submit"
                                 onClick={handleSubmit}
                                 bgColor={'red.400'}
-                                //bgGradient='linear(to-r, teal.500, green.500)'
                                 _hover={{
                                     bgColor: 'red.500'
-                                //bgGradient: 'linear(to-r, red.500, yellow.500)',
+                                
                                 }}
                                 _active={{
-                                //bgGradient: 'linear(to-r, red.500, yellow.500)',
                                     bgColor: 'red.500'
                                 }}>
                                 Add
                             </Button>
+                            {/* <IconButton
+                                type='submit'
+                                aria-label='add-shipment'
+                                onClick={handleSubmit}
+                                isRound={true}
+                                icon={<AddIcon />}
+                            /> */}
                         </motion.div>
                     </GridItem>
                 </SimpleGrid>
