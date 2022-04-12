@@ -11,8 +11,9 @@ import {
 } from "@chakra-ui/react"
 
 interface ModalFormProps {
-    buttonLabel: string
-    children: JSX.Element
+    openModalLabel: string;
+    header: string;
+    children: JSX.Element;
 }
 
 const ModalForm = (props : ModalFormProps) => {
@@ -20,18 +21,18 @@ const ModalForm = (props : ModalFormProps) => {
 
     return (
         <>
-        <Button onClick={onOpen}>{props.buttonLabel}</Button>
+        <Button onClick={onOpen}>{props.openModalLabel}</Button>
         <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-            <ModalHeader>Create your account</ModalHeader>
+            <ModalHeader>{props.header}</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
                 {props.children}
             </ModalBody>
 
             <ModalFooter>
-                <Button colorScheme='blue' mr={3}>
+                <Button colorScheme='red.400' mr={3}>
                 Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>

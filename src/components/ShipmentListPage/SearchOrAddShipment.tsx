@@ -1,10 +1,10 @@
-import { Button, Flex, FormControl, GridItem, Heading, Input, InputGroup, InputRightElement, SimpleGrid, VStack } from "@chakra-ui/react"
+import { Button, Flex, GridItem, Heading, SimpleGrid, VStack } from "@chakra-ui/react"
 import { useLiveQuery } from "dexie-react-hooks"
 import { motion } from "framer-motion"
 import { useState, useEffect, FormEvent } from "react"
 import { db } from "../../models/db"
 import { ShipmentList } from "../../models/ShipmentList"
-import ClearButton from "../ClearButton"
+import SearchBar from "./SearchBar"
 import ShipmentLists from "./ShipmentLists"
 
 const SearchOrAddShipment = (): JSX.Element => {
@@ -70,22 +70,13 @@ const SearchOrAddShipment = (): JSX.Element => {
                 <Heading as={'h1'} size='2xl'>Shipments</Heading>
                 <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
                     <GridItem colSpan={colspan}>
-                        <FormControl>
-                            <InputGroup>
-                                <Input 
-                                    id='title' 
-                                    type='text' 
-                                    value={title}
-                                    size="lg"
-                                    onChange={({ target }) => 
-                                        settitle(target.value)}
-                                    placeholder='Search or add a shipment'
-                                />
-                                <InputRightElement>
-                                    <ClearButton visible={visible} onClick={handleClearButtonClick} />
-                                </InputRightElement>
-                            </InputGroup>
-                        </FormControl>
+                        <SearchBar 
+                            onChange={({ target }) => 
+                                settitle(target.value)}
+                            clearInput={handleClearButtonClick}
+                            value={title}
+                            visible={visible}
+                        />
                     </GridItem>
                     <GridItem  colSpan={colspan}>
                         <motion.div whileTap={{ scale: 0.9 }}>
@@ -105,13 +96,6 @@ const SearchOrAddShipment = (): JSX.Element => {
                                 }}>
                                 Add
                             </Button>
-                            {/* <IconButton
-                                type='submit'
-                                aria-label='add-shipment'
-                                onClick={handleSubmit}
-                                isRound={true}
-                                icon={<AddIcon />}
-                            /> */}
                         </motion.div>
                     </GridItem>
                 </SimpleGrid>
