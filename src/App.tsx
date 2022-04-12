@@ -14,7 +14,6 @@ const App = () => {
    * TODO - Add error component
    * TODO - Use formik
    * TODO - Use Bootstrap/ChakraUI/MaterialUI
-   * TODO - Add dark mode
    */
 
   return (

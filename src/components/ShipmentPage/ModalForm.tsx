@@ -7,12 +7,17 @@ import {
     ModalCloseButton, 
     ModalBody, 
     ModalFooter,
-    Text,
     Modal,
 } from "@chakra-ui/react"
 
-const ModalForm = () => {
+interface ModalFormProps {
+    child: JSX.Element
+}
+
+const ModalForm = ({ child } : ModalFormProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    if (!child) return null
 
     return (
         <>
@@ -23,9 +28,7 @@ const ModalForm = () => {
             <ModalHeader>Create your account</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-                <Text>
-                    Hehe boi
-                </Text>
+                {child}
             </ModalBody>
 
             <ModalFooter>

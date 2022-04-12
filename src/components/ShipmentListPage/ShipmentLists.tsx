@@ -1,7 +1,7 @@
 import { db } from '../../models/db'
 import { Link as RouteLink } from 'react-router-dom'
 import { ShipmentList } from '../../models/ShipmentList'
-import { Flex, Box, Button, Text, IconButton, HStack, Link } from '@chakra-ui/react'
+import { Flex, Box, Text, IconButton, HStack, Link } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 
 interface ShipmentListsProps {
@@ -30,23 +30,21 @@ const ShipmentLists = ({ list }: ShipmentListsProps): JSX.Element => {
                         <IconButton 
                             aria-label={'delete-shipment'}
                             type='button'
-                            color={'red.400'}
+                            color={'white'}
+                            bg='red.400'
                             isRound
+                            _hover={{
+                                bgColor: 'red.500'
+                            
+                            }}
+                            _active={{
+                                bgColor: 'red.500'
+                            }}
                             icon={<DeleteIcon boxSize={6} />}
                             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                             onClick={() => db.deleteShipmentList(li.id!)}
                         />
                     </HStack>
-                    
-                    {/* <Button
-                        size='lg'
-                        w='full'
-                        type='button'
-                        bgColor={'red.400'}
-                        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                        onClick={() => db.deleteShipmentList(li.id!)}>
-                        Delete
-                    </Button> */}
                 </Box>
             )}
             </Flex>
