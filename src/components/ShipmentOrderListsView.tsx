@@ -7,7 +7,8 @@ import ProductForm from './ProductForm'
 import { FormattedCSVData } from '../types'
 import UpdateOrderButton from './UpdateOrderButton'
 import ModalForm from './ShipmentPage/ModalForm'
-import { Link, Text } from '@chakra-ui/react'
+import { Button, HStack, Link, Text } from '@chakra-ui/react'
+import ToggleThemeButton from './ToggleThemeButton'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {
 
@@ -37,12 +38,18 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
 
     return(
         <>
-        <>
+        <HStack w={'full'} justify={'space-between'} border='1px' borderColor={'red'}>
             <Link as={RouterLink} to='/'>
-                <Text fontSize='2xl'>Home</Text>
+                <Text p={'2'} fontSize='2xl'>Home</Text>
             </Link>
-        </>
-        <ModalForm child={<ProductForm shipmentListId={id} />} />
+            <ToggleThemeButton />
+        </HStack>
+        <ModalForm buttonLabel='Add'>
+            <ProductForm shipmentListId={id} />
+        </ModalForm>
+        <Button type='button'>
+            <CSVLink data={data} filename={`${valid.title}.csv`}>Download</CSVLink>
+        </Button>
         <ul>
             {items?.map(i => <li key={i.id}>
                 {i.RecipientName} - {i.RecipientPhone} - {i.itemDescription}
@@ -54,7 +61,6 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                     <UpdateOrderButton item={i} />
             </li>)}
         </ul>
-        <CSVLink data={data}>Download</CSVLink>
         </>
     )
 

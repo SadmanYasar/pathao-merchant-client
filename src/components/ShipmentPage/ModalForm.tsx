@@ -11,24 +11,23 @@ import {
 } from "@chakra-ui/react"
 
 interface ModalFormProps {
-    child: JSX.Element
+    buttonLabel: string
+    children: JSX.Element
 }
 
-const ModalForm = ({ child } : ModalFormProps) => {
+const ModalForm = (props : ModalFormProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-
-    if (!child) return null
 
     return (
         <>
-        <Button onClick={onOpen}>Open Modal</Button>
+        <Button onClick={onOpen}>{props.buttonLabel}</Button>
         <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
             <ModalHeader>Create your account</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-                {child}
+                {props.children}
             </ModalBody>
 
             <ModalFooter>
