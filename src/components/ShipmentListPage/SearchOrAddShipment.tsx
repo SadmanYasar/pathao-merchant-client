@@ -1,9 +1,9 @@
-import { Button, Flex, GridItem, Heading, SimpleGrid, VStack } from "@chakra-ui/react"
+import { Flex, GridItem, Heading, SimpleGrid, VStack } from "@chakra-ui/react"
 import { useLiveQuery } from "dexie-react-hooks"
-import { motion } from "framer-motion"
 import { useState, useEffect, FormEvent } from "react"
 import { db } from "../../models/db"
 import { ShipmentList } from "../../models/ShipmentList"
+import AddShipmentButton from "./AddShipmentButton."
 import SearchBar from "./SearchBar"
 import ShipmentLists from "./ShipmentLists"
 
@@ -79,24 +79,7 @@ const SearchOrAddShipment = (): JSX.Element => {
                         />
                     </GridItem>
                     <GridItem  colSpan={colspan}>
-                        <motion.div whileTap={{ scale: 0.9 }}>
-                            <Button
-                                size="lg"
-                                w='full'
-                                id='login-button'
-                                type="submit"
-                                onClick={handleSubmit}
-                                bgColor={'red.400'}
-                                _hover={{
-                                    bgColor: 'red.500'
-                                
-                                }}
-                                _active={{
-                                    bgColor: 'red.500'
-                                }}>
-                                Add
-                            </Button>
-                        </motion.div>
+                        <AddShipmentButton handleSubmit={handleSubmit} />
                     </GridItem>
                 </SimpleGrid>
                 <ShipmentLists list={filters} />
