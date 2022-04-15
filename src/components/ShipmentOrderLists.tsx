@@ -52,7 +52,16 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                     <ModalForm openModalLabel='Add' header='Add entry'>
                         <ProductForm shipmentListId={id} />
                     </ModalForm>
-                    <Button type='button'>
+                    <Button 
+                        type='button'
+                        bgColor={'red.400'}
+                        _hover={{
+                            bgColor: 'red.500'
+                        
+                        }}
+                        _active={{
+                            bgColor: 'red.500'
+                    }}>
                         <CSVLink data={data} filename={`${valid.title}.csv`}>Download</CSVLink>
                     </Button>
             </VStack>

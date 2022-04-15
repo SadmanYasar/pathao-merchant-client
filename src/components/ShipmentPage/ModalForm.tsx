@@ -21,7 +21,18 @@ const ModalForm = (props : ModalFormProps) => {
 
     return (
         <>
-        <Button onClick={onOpen}>{props.openModalLabel}</Button>
+        <Button 
+            onClick={onOpen}
+            bgColor='red.400'
+            _hover={{
+                bgColor: 'red.500'
+            
+            }}
+            _active={{
+                bgColor: 'red.500'
+        }}>
+            {props.openModalLabel}
+        </Button>
         <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
