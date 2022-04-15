@@ -71,8 +71,7 @@ const SearchOrAddShipment = (): JSX.Element => {
                 <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
                     <GridItem colSpan={colspan}>
                         <SearchBar 
-                            onChange={({ target }) => 
-                                settitle(target.value)}
+                            onChange={({ target }) => settitle(target.value)}
                             clearInput={handleClearButtonClick}
                             value={title}
                             visible={visible}

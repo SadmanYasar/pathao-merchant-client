@@ -7,7 +7,7 @@ import ProductForm from './ProductForm'
 import { FormattedCSVData } from '../types'
 import UpdateOrderButton from './UpdateOrderButton'
 import ModalForm from './ShipmentPage/ModalForm'
-import { Button, Flex, HStack, Link, Text } from '@chakra-ui/react'
+import { Button, Flex, HStack, Link, Text, VStack } from '@chakra-ui/react'
 import ToggleThemeButton from './ToggleThemeButton'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {
@@ -37,19 +37,26 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
     const data: FormattedCSVData[] = items.map(({id, shipmentListId, itemDescription, ...rest}) => rest)
 
     return(
-        <Flex flexDirection={'column'} w='full' h='100vh'>
-            <HStack w={'full'} justify={'space-between'} border='1px' borderColor={'red'}>
+        <Flex flexDirection={'column'} w='full' h='100vh' alignItems={'center'}>
+            <HStack paddingLeft={4} w={'full'} border={'1px'} borderColor='red'>
                 <Link as={RouterLink} to='/'>
                     <Text p={'2'} fontSize='2xl'>Home</Text>
                 </Link>
                 <ToggleThemeButton />
             </HStack>
-            <ModalForm openModalLabel='Add' header='Add entry'>
-                <ProductForm shipmentListId={id} />
-            </ModalForm>
-            <Button type='button'>
-                <CSVLink data={data} filename={`${valid.title}.csv`}>Download</CSVLink>
-            </Button>
+            <VStack
+                w={{ base: 'full', md: '50%' }}
+                h='full'
+                p={10}
+                spacing={10}>
+                    <ModalForm openModalLabel='Add' header='Add entry'>
+                        <ProductForm shipmentListId={id} />
+                    </ModalForm>
+                    <Button type='button'>
+                        <CSVLink data={data} filename={`${valid.title}.csv`}>Download</CSVLink>
+                    </Button>
+            </VStack>
+            
             <ul>
                 {items?.map(i => <li key={i.id}>
                     {i.RecipientName} - {i.RecipientPhone} - {i.itemDescription}

@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
-import ShipmentOrdersLists from './components/ShipmentOrderListsView';
+import ShipmentOrdersLists from './components/ShipmentOrderLists';
 import ShipmentListPage from './components/ShipmentListPage/index';
 import { Container } from '@chakra-ui/react';
 
