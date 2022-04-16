@@ -7,8 +7,9 @@ import ProductForm from './ProductForm'
 import { FormattedCSVData } from '../types'
 import UpdateOrderButton from './UpdateOrderButton'
 import ModalForm from './ShipmentPage/ModalForm'
-import { Button, Flex, HStack, Link, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, HStack, IconButton, Link, list, Text, VStack } from '@chakra-ui/react'
 import ToggleThemeButton from './ToggleThemeButton'
+import { DeleteIcon } from '@chakra-ui/icons'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {
 
@@ -49,7 +50,7 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                 h='full'
                 p={10}
                 spacing={10}>
-                    <ModalForm openModalLabel='Add' header='Add entry'>
+                    <ModalForm header='Add entry'>
                         <ProductForm shipmentListId={id} />
                     </ModalForm>
                     <Button 
@@ -64,19 +65,49 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                     }}>
                         <CSVLink data={data} filename={`${valid.title}.csv`}>Download</CSVLink>
                     </Button>
+
+                    {items
+                        .map(i => 
+                        <Box
+                            key={i.id}
+                            p={5}
+                            m={3}
+                            css={{ boxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
+                        }}>
+                            <HStack w={'full'} spacing='10' justify={'space-between'}>
+                                <Text fontSize='2xl' isTruncated>{i.StoreName}</Text>
+                                <IconButton 
+                                    aria-label={'delete-shipment-entry'}
+                                    type='button'
+                                    color={'white'}
+                                    bg='red.400'
+                                    isRound
+                                    _hover={{
+                                        bgColor: 'red.500'
+                                    
+                                    }}
+                                    _active={{
+                                        bgColor: 'red.500'
+                                    }}
+                                    icon={<DeleteIcon boxSize={6} />}
+                                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                                    onClick={() => db.shipmentOrders.delete(Number(i.id))}
+                                />
+                            </HStack>
+                        </Box>)}
+
+{/*                     <ul>
+                    {items?.map(i => <li key={i.id}>
+                        {i.StoreName} - {i.RecipientPhone} - {i.itemDescription}
+                            <button 
+                                type='button' 
+                                onClick={() => db.shipmentOrders.delete(Number(i.id))}>
+                                Delete
+                            </button>
+                            <UpdateOrderButton item={i} />
+                    </li>)}
+                </ul> */}
             </VStack>
-            
-            <ul>
-                {items?.map(i => <li key={i.id}>
-                    {i.RecipientName} - {i.RecipientPhone} - {i.itemDescription}
-                        <button 
-                            type='button' 
-                            onClick={() => db.shipmentOrders.delete(Number(i.id))}>
-                            Delete
-                        </button>
-                        <UpdateOrderButton item={i} />
-                </li>)}
-            </ul>
         </Flex>
     )
 

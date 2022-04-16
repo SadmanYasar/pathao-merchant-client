@@ -1,3 +1,4 @@
+import { AddIcon } from "@chakra-ui/icons";
 import { 
     useDisclosure, 
     Button, 
@@ -8,10 +9,10 @@ import {
     ModalBody, 
     ModalFooter,
     Modal,
+    IconButton,
 } from "@chakra-ui/react"
 
 interface ModalFormProps {
-    openModalLabel: string;
     header: string;
     children: JSX.Element;
 }
@@ -21,18 +22,23 @@ const ModalForm = (props : ModalFormProps) => {
 
     return (
         <>
-        <Button 
-            onClick={onOpen}
-            bgColor='red.400'
+        <IconButton 
+            aria-label={'add-shipment-item'}
+            type='button'
+            color={'white'}
+            bg='red.400'
+            isRound
             _hover={{
                 bgColor: 'red.500'
             
             }}
             _active={{
                 bgColor: 'red.500'
-        }}>
-            {props.openModalLabel}
-        </Button>
+            }}
+            icon={<AddIcon boxSize={6} />}
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            onClick={onOpen}
+        />
         <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
@@ -43,7 +49,7 @@ const ModalForm = (props : ModalFormProps) => {
             </ModalBody>
 
             <ModalFooter>
-                <Button colorScheme='red.400' mr={3}>
+                <Button type='submit' bg='red.400' mr={3}>
                 Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>
