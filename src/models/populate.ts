@@ -7,17 +7,17 @@ export async function populate() {
   await db.shipmentOrders.bulkAdd([
     {
       shipmentListId,
-      AmountToCollect: 100,
-      ItemQuantity: 1,
       ItemType: 'parcel',
-      ItemWeight: 12,
-      RecipientAddress: 'chittagong',
-      RecipientCity: 'ctg',
+      StoreName: 'hope world',
       RecipientName: 'Jason',
       RecipientPhone: '12345',
-      StoreName: 'hope world',
+      RecipientCity: 'ctg',
+      RecipientZone: 'ctg',
+      RecipientAddress: 'chittagong',
+      AmountToCollect: 100,
+      ItemQuantity: 1,
+      ItemWeight: 12,
       itemDescription: 'photo card',
-      RecipientZone: 'ctg'
     }
   ]);
 }

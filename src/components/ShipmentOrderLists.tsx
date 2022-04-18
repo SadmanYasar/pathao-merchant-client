@@ -1,13 +1,10 @@
-import React from 'react'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../models/db'
 import { CSVLink } from 'react-csv'
 import { Link as RouterLink, useParams } from 'react-router-dom'
-import ProductForm from './ProductForm'
 import { FormattedCSVData } from '../types'
-import UpdateOrderButton from './UpdateOrderButton'
-import AddProductModal from '../ShipmentPage/ModalForm'
-import { Box, Button, Flex, HStack, IconButton, Link, list, Text, VStack } from '@chakra-ui/react'
+import AddProductModal from '../ShipmentPage/AddProductModal'
+import { Box, Button, Flex, HStack, IconButton, Link, Text, VStack } from '@chakra-ui/react'
 import ToggleThemeButton from './ToggleThemeButton'
 import { DeleteIcon } from '@chakra-ui/icons'
 
@@ -39,7 +36,7 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
 
     return(
         <Flex flexDirection={'column'} w='full' h='100vh' alignItems={'center'}>
-            <HStack paddingLeft={4} w={'full'} border={'1px'} borderColor='red'>
+            <HStack paddingLeft={4} w={'full'}>
                 <Link as={RouterLink} to='/'>
                     <Text p={'2'} fontSize='2xl'>Home</Text>
                 </Link>
@@ -50,9 +47,7 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                 h='full'
                 p={10}
                 spacing={10}>
-                    <AddProductModal header='Add entry'>
-                        <ProductForm shipmentListId={id} />
-                    </AddProductModal>
+                    <AddProductModal header='Add entry' id={id} />
                     <Button 
                         type='button'
                         bgColor={'red.400'}

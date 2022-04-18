@@ -1,7 +1,6 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { 
     useDisclosure, 
-    Button, 
     ModalOverlay, 
     ModalContent, 
     ModalHeader, 
@@ -9,15 +8,15 @@ import {
     ModalBody, 
     Modal,
     IconButton,
-    HStack,
 } from "@chakra-ui/react"
+import ProductForm from "../components/ProductForm";
 
-interface ModalFormProps {
+interface AddProductModalProps {
+    id: number;
     header: string;
-    children: JSX.Element;
 }
 
-const AddProductModal = (props : ModalFormProps) => {
+const AddProductModal = (props : AddProductModalProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
@@ -45,13 +44,7 @@ const AddProductModal = (props : ModalFormProps) => {
             <ModalHeader>{props.header}</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-                {props.children}
-                <HStack w={'full'} justifyContent='right'>
-                    <Button type='submit' bg='red.400' mr={3}>
-                    Save
-                    </Button>
-                    <Button onClick={onClose}>Cancel</Button>
-                </HStack>
+                <ProductForm shipmentListId={props.id} onClose={onClose}/>
             </ModalBody>
             </ModalContent>
         </Modal>

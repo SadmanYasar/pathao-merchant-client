@@ -1,40 +1,36 @@
-import { VStack } from '@chakra-ui/react';
+import { Box, Button, FormControl, HStack, Input, VStack } from '@chakra-ui/react';
 import React, { FormEvent, useState } from 'react'
 import { db } from '../models/db';
 import { ShipmentOrder } from '../models/ShipmentOrder';
 
 interface Props {
-  shipmentListId: number
+	shipmentListId: number;
+  onClose: () => void;
 }
 
 const initialValues: ShipmentOrder = {
-  AmountToCollect: 0,
-  ItemQuantity: 1,
-  ItemType: 'parcel',
-  ItemWeight: 0.46,
-  RecipientAddress: '',
-  RecipientCity: '',
+	ItemType: 'parcel',
+	StoreName: 'I Am Your Hope',
   RecipientName: '',
-  RecipientPhone: '',
-  StoreName: 'I Am Your Hope',
-  RecipientZone: '',
-  itemDescription: ''
+	RecipientPhone: '',
+	RecipientCity: '',
+	RecipientZone: '',
+	RecipientAddress: '',
+	AmountToCollect: 0,
+	ItemQuantity: 1,
+	ItemWeight: 0.46,
+	itemDescription: ''
 }
 
-const ProductForm = ({ shipmentListId }: Props): JSX.Element => {
+const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
     const [fields, setfields] = useState<ShipmentOrder>(initialValues)
-
-    const style = {
-      margin: '10px',
-      padding: '10px'
-    }
 
     const handleSubmit = async (e : FormEvent<HTMLElement>) => {
       e.preventDefault()
 
       try {
         await db.shipmentOrders.add({
-          shipmentListId: shipmentListId,
+        shipmentListId: shipmentListId,
           ...fields
         })
         setfields(initialValues)
@@ -51,29 +47,38 @@ const ProductForm = ({ shipmentListId }: Props): JSX.Element => {
     })
     
     return (
-        <VStack w={'full'} p='4'>
-        <form onSubmit={handleSubmit}>
-        <label>
-          Item Type:
-          <input 
-            style={style}
-            type='text' 
-            name='ItemType'
-            value={fields.ItemType}
-            onChange={handleChange}/>
-        </label>
-        <label>
-          Store Name:
-          <input 
-            style={style}
-            type='text' 
-            name='StoreName' 
-            value={fields.StoreName}
-            onChange={handleChange}/>
-        </label>
-        <button type='submit'>Add</button>
-        </form>
-        </VStack>
+        <Box w={'full'}>
+          <form onSubmit={handleSubmit}>
+            <VStack w={'full'} p='4' spacing={4}>
+              <FormControl>
+                <Input
+                  id='storeName'
+                  type={'text'}
+                  name='StoreName' 
+                  value={fields.StoreName}
+                  onChange={handleChange}
+                  placeholder='Store Name'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='recipientName'
+                  type={'text'}
+                  name='RecipientName' 
+                  value={fields.RecipientName}
+                  onChange={handleChange}
+                  placeholder='Recipient Name'
+                />
+              </FormControl>
+              <HStack w={'full'} justifyContent='right'>
+                  <Button type='submit' bg='red.400' mr={3}>
+                  Save
+                  </Button>
+                  <Button onClick={onClose}>Cancel</Button>
+              </HStack>
+            </VStack>  
+          </form>
+        </Box>
     )
 }
 
