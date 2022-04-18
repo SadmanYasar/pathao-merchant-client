@@ -10,15 +10,15 @@ interface Props {
 
 const initialValues: ShipmentOrder = {
 	ItemType: 'parcel',
-	StoreName: 'I Am Your Hope',
+	StoreName: '',
   RecipientName: '',
 	RecipientPhone: '',
 	RecipientCity: '',
 	RecipientZone: '',
 	RecipientAddress: '',
-	AmountToCollect: 0,
-	ItemQuantity: 1,
-	ItemWeight: 0.46,
+	AmountToCollect: '',
+	ItemQuantity: '',
+	ItemWeight: '',
 	itemDescription: ''
 }
 
@@ -33,7 +33,13 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
         shipmentListId: shipmentListId,
           ...fields
         })
-        setfields(initialValues)
+        setfields({
+          ...initialValues, 
+          ItemType: fields.ItemType,
+          StoreName: fields.StoreName,
+          ItemQuantity: fields.ItemQuantity,
+          ItemWeight: fields.ItemWeight
+        })
 
       } catch (error: unknown) {
         console.log(error)

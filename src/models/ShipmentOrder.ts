@@ -9,7 +9,7 @@ export interface ShipmentOrder {
     RecipientCity: string;
     RecipientZone?: string;
     RecipientAddress: string;
-    AmountToCollect: number;
-    ItemQuantity: number;
-    ItemWeight: number;
+    AmountToCollect: number | '';
+    ItemQuantity: number | '';
+    ItemWeight: number | '';
 }
