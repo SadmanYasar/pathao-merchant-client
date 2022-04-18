@@ -1,4 +1,4 @@
-import { Flex, GridItem, Heading, SimpleGrid, VStack } from "@chakra-ui/react"
+import { Box, Flex, GridItem, Heading, SimpleGrid, VStack } from "@chakra-ui/react"
 import { useLiveQuery } from "dexie-react-hooks"
 import { useState, useEffect, FormEvent } from "react"
 import { db } from "../../models/db"
@@ -68,19 +68,23 @@ const SearchOrAddShipment = (): JSX.Element => {
                 p={10}
                 spacing={10}>
                 <Heading as={'h1'} size='2xl'>Shipments</Heading>
-                <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
-                    <GridItem colSpan={colspan}>
-                        <SearchBar 
-                            onChange={({ target }) => settitle(target.value)}
-                            clearInput={handleClearButtonClick}
-                            value={title}
-                            visible={visible}
-                        />
-                    </GridItem>
-                    <GridItem  colSpan={colspan}>
-                        <AddShipmentButton handleSubmit={handleSubmit} />
-                    </GridItem>
-                </SimpleGrid>
+                    <Box w={'full'}>
+                    <form onSubmit={handleSubmit}>
+                        <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
+                            <GridItem colSpan={colspan}>
+                                <SearchBar 
+                                    onChange={({ target }) => settitle(target.value)}
+                                    clearInput={handleClearButtonClick}
+                                    value={title}
+                                    visible={visible}
+                                />
+                            </GridItem>
+                            <GridItem  colSpan={colspan}>
+                                <AddShipmentButton />
+                            </GridItem>
+                        </SimpleGrid>
+                    </form>
+                    </Box>
                 <ShipmentLists list={filters} />
             </VStack>
         </Flex>

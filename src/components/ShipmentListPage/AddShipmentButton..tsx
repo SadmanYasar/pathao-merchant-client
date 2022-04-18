@@ -1,12 +1,7 @@
 import { Button } from "@chakra-ui/react"
 import { motion } from "framer-motion"
-import { FormEvent } from "react";
 
-interface AddShipmentButtonProps {
-    handleSubmit: (e: FormEvent<HTMLElement>) => Promise<void>;
-}
-
-const AddShipmentButton = ({ handleSubmit } : AddShipmentButtonProps) => {
+const AddShipmentButton = () => {
     return(
         <motion.div whileTap={{ scale: 0.9 }}>
             <Button
@@ -14,7 +9,6 @@ const AddShipmentButton = ({ handleSubmit } : AddShipmentButtonProps) => {
                 w='full'
                 id='login-button'
                 type="submit"
-                onClick={handleSubmit}
                 bgColor={'red.400'}
                 _hover={{
                     bgColor: 'red.500'
