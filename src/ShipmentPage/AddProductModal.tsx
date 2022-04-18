@@ -38,7 +38,7 @@ const AddProductModal = (props : AddProductModalProps) => {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             onClick={onOpen}
         />
-        <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+        <Modal blockScrollOnMount={false} closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
             <ModalHeader>{props.header}</ModalHeader>

@@ -52,9 +52,19 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
             <VStack w={'full'} p='4' spacing={4}>
               <FormControl>
                 <Input
-                  id='storeName'
+                  id='itemType'
+                  name='ItemType'
                   type={'text'}
-                  name='StoreName' 
+                  value={fields.ItemType}
+                  onChange={handleChange}
+                  placeholder='Item type'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='storeName'
+                  name='StoreName'
+                  type={'text'}
                   value={fields.StoreName}
                   onChange={handleChange}
                   placeholder='Store Name'
@@ -63,11 +73,91 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='recipientName'
-                  type={'text'}
-                  name='RecipientName' 
+                  name='RecipientName'
+                  type={'text'} 
                   value={fields.RecipientName}
                   onChange={handleChange}
                   placeholder='Recipient Name'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='recipientPhone'
+                  name='RecipientPhone'
+                  type={'text'} 
+                  value={fields.RecipientPhone}
+                  onChange={handleChange}
+                  placeholder='Recipient Phone'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='recipientCity'
+                  name='RecipientCity'
+                  type={'text'} 
+                  value={fields.RecipientCity}
+                  onChange={handleChange}
+                  placeholder='Recipient City'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='recipientZone'
+                  name='RecipientZone'
+                  type={'text'} 
+                  value={fields.RecipientZone}
+                  onChange={handleChange}
+                  placeholder='Recipient Zone'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='recipientAddress'
+                  name='RecipientAddress'
+                  type={'text'} 
+                  value={fields.RecipientAddress}
+                  onChange={handleChange}
+                  placeholder='Recipient Address'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='amountToCollect'
+                  name='AmountToCollect'
+                  type={'number'} 
+                  value={fields.AmountToCollect}
+                  onChange={handleChange}
+                  placeholder='Amount'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='itemQuantity'
+                  name='ItemQuantity'
+                  type={'number'} 
+                  value={fields.ItemQuantity}
+                  onChange={handleChange}
+                  placeholder='Item Quantity'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='itemWeight'
+                  name='ItemWeight'
+                  type={'number'} 
+                  value={fields.ItemWeight}
+                  onChange={handleChange}
+                  placeholder='Item Weight'
+                />
+              </FormControl>
+              <FormControl>
+                <Input
+                  id='itemDescription'
+                  name='itemDescription'
+                  type={'text'} 
+                  value={fields.itemDescription}
+                  onChange={handleChange}
+                  placeholder='Item Description'
                 />
               </FormControl>
               <HStack w={'full'} justifyContent='right'>
