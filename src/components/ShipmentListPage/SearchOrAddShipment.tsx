@@ -68,19 +68,21 @@ const SearchOrAddShipment = (): JSX.Element => {
                 p={10}
                 spacing={10}>
                 <Heading as={'h1'} size='2xl'>Shipments</Heading>
-                <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
-                    <GridItem colSpan={colspan}>
-                        <SearchBar 
-                            onChange={({ target }) => settitle(target.value)}
-                            clearInput={handleClearButtonClick}
-                            value={title}
-                            visible={visible}
-                        />
-                    </GridItem>
-                    <GridItem  colSpan={colspan}>
-                        <AddShipmentButton handleSubmit={handleSubmit} />
-                    </GridItem>
-                </SimpleGrid>
+                    <form onSubmit={handleSubmit}>
+                        <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
+                            <GridItem colSpan={colspan}>
+                                <SearchBar 
+                                    onChange={({ target }) => settitle(target.value)}
+                                    clearInput={handleClearButtonClick}
+                                    value={title}
+                                    visible={visible}
+                                />
+                            </GridItem>
+                            <GridItem  colSpan={colspan}>
+                                <AddShipmentButton />
+                            </GridItem>
+                        </SimpleGrid>
+                    </form>
                 <ShipmentLists list={filters} />
             </VStack>
         </Flex>

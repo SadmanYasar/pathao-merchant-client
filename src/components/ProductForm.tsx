@@ -1,3 +1,4 @@
+import { VStack } from '@chakra-ui/react';
 import React, { FormEvent, useState } from 'react'
 import { db } from '../models/db';
 import { ShipmentOrder } from '../models/ShipmentOrder';
@@ -50,7 +51,7 @@ const ProductForm = ({ shipmentListId }: Props): JSX.Element => {
     })
     
     return (
-        <>
+        <VStack w={'full'} p='4'>
         <form onSubmit={handleSubmit}>
         <label>
           Item Type:
@@ -72,7 +73,7 @@ const ProductForm = ({ shipmentListId }: Props): JSX.Element => {
         </label>
         <button type='submit'>Add</button>
         </form>
-        </>
+        </VStack>
     )
 }
 
