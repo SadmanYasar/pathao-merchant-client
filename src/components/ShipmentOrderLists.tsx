@@ -6,7 +6,7 @@ import { Link as RouterLink, useParams } from 'react-router-dom'
 import ProductForm from './ProductForm'
 import { FormattedCSVData } from '../types'
 import UpdateOrderButton from './UpdateOrderButton'
-import ModalForm from './ShipmentPage/ModalForm'
+import AddProductModal from '../ShipmentPage/ModalForm'
 import { Box, Button, Flex, HStack, IconButton, Link, list, Text, VStack } from '@chakra-ui/react'
 import ToggleThemeButton from './ToggleThemeButton'
 import { DeleteIcon } from '@chakra-ui/icons'
@@ -50,9 +50,9 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                 h='full'
                 p={10}
                 spacing={10}>
-                    <ModalForm header='Add entry'>
+                    <AddProductModal header='Add entry'>
                         <ProductForm shipmentListId={id} />
-                    </ModalForm>
+                    </AddProductModal>
                     <Button 
                         type='button'
                         bgColor={'red.400'}

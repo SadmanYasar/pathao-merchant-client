@@ -1,6 +1,6 @@
-import { db } from '../../models/db'
+import { db } from '../models/db'
 import { Link as RouteLink } from 'react-router-dom'
-import { ShipmentList } from '../../models/ShipmentList'
+import { ShipmentList } from '../models/ShipmentList'
 import { Flex, Box, Text, IconButton, HStack, Link } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 

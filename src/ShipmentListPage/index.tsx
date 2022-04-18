@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react"
-import ToggleThemeButton from "../ToggleThemeButton"
+import ToggleThemeButton from "../components/ToggleThemeButton"
 import SearchOrAddShipment from "./SearchOrAddShipment"
 
 const ShipmentListPage = () => {

@@ -1,5 +1,5 @@
 import { FormControl, InputGroup, Input, InputRightElement } from "@chakra-ui/react"
-import ClearButton from "../ClearButton"
+import ClearButton from "../components/ClearButton"
 
 interface SearchBarProps {
     value: string;

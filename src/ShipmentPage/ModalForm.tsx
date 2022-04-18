@@ -7,9 +7,9 @@ import {
     ModalHeader, 
     ModalCloseButton, 
     ModalBody, 
-    ModalFooter,
     Modal,
     IconButton,
+    HStack,
 } from "@chakra-ui/react"
 
 interface ModalFormProps {
@@ -17,7 +17,7 @@ interface ModalFormProps {
     children: JSX.Element;
 }
 
-const ModalForm = (props : ModalFormProps) => {
+const AddProductModal = (props : ModalFormProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
@@ -46,18 +46,17 @@ const ModalForm = (props : ModalFormProps) => {
             <ModalCloseButton />
             <ModalBody pb={6}>
                 {props.children}
+                <HStack w={'full'} justifyContent='right'>
+                    <Button type='submit' bg='red.400' mr={3}>
+                    Save
+                    </Button>
+                    <Button onClick={onClose}>Cancel</Button>
+                </HStack>
             </ModalBody>
-
-            <ModalFooter>
-                <Button type='submit' bg='red.400' mr={3}>
-                Save
-                </Button>
-                <Button onClick={onClose}>Cancel</Button>
-            </ModalFooter>
             </ModalContent>
         </Modal>
         </>
     )
 }
 
-export default ModalForm
+export default AddProductModal
