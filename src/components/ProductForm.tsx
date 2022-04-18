@@ -9,17 +9,20 @@ interface Props {
 }
 
 const initialValues: ShipmentOrder = {
-	ItemType: 'parcel',
-	StoreName: '',
-  RecipientName: '',
-	RecipientPhone: '',
-	RecipientCity: '',
-	RecipientZone: '',
-	RecipientAddress: '',
-	AmountToCollect: '',
-	ItemQuantity: '',
-	ItemWeight: '',
-	itemDescription: ''
+	'ItemType(*)': 'parcel',
+	'StoreName(*)': '',
+  MerchantOrderId: '',
+  'RecipientName(*)': '',
+	'RecipientPhone(*)': '',
+	'RecipientCity(*)': '',
+	'RecipientZone(*)': '',
+  RecipientArea: '',
+	'RecipientAddress(*)': '',
+	'AmountToCollect(*)': '',
+	'ItemQuantity(*)': '',
+	'ItemWeight(*)': '',
+	ItemDesc: '',
+  SpecialInstruction: ''
 }
 
 const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
@@ -35,10 +38,10 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
         })
         setfields({
           ...initialValues, 
-          ItemType: fields.ItemType,
-          StoreName: fields.StoreName,
-          ItemQuantity: fields.ItemQuantity,
-          ItemWeight: fields.ItemWeight
+          'ItemType(*)': fields['ItemType(*)'],
+          'StoreName(*)': fields['StoreName(*)'],
+          'ItemQuantity(*)': fields['ItemQuantity(*)'],
+          'ItemWeight(*)': fields['ItemWeight(*)']
         })
 
       } catch (error: unknown) {
@@ -59,9 +62,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='itemType'
-                  name='ItemType'
+                  name='ItemType(*)'
                   type={'text'}
-                  value={fields.ItemType}
+                  value={fields['ItemType(*)']}
                   onChange={handleChange}
                   placeholder='Item type'
                 />
@@ -69,9 +72,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='storeName'
-                  name='StoreName'
+                  name='StoreName(*)'
                   type={'text'}
-                  value={fields.StoreName}
+                  value={fields['StoreName(*)']}
                   onChange={handleChange}
                   placeholder='Store Name'
                 />
@@ -79,9 +82,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='recipientName'
-                  name='RecipientName'
+                  name='RecipientName(*)'
                   type={'text'} 
-                  value={fields.RecipientName}
+                  value={fields['RecipientName(*)']}
                   onChange={handleChange}
                   placeholder='Recipient Name'
                 />
@@ -89,9 +92,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='recipientPhone'
-                  name='RecipientPhone'
+                  name='RecipientPhone(*)'
                   type={'text'} 
-                  value={fields.RecipientPhone}
+                  value={fields['RecipientPhone(*)']}
                   onChange={handleChange}
                   placeholder='Recipient Phone'
                 />
@@ -99,9 +102,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='recipientCity'
-                  name='RecipientCity'
+                  name='RecipientCity(*)'
                   type={'text'} 
-                  value={fields.RecipientCity}
+                  value={fields['RecipientCity(*)']}
                   onChange={handleChange}
                   placeholder='Recipient City'
                 />
@@ -109,9 +112,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='recipientZone'
-                  name='RecipientZone'
+                  name='RecipientZone(*)'
                   type={'text'} 
-                  value={fields.RecipientZone}
+                  value={fields['RecipientZone(*)']}
                   onChange={handleChange}
                   placeholder='Recipient Zone'
                 />
@@ -119,9 +122,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='recipientAddress'
-                  name='RecipientAddress'
+                  name='RecipientAddress(*)'
                   type={'text'} 
-                  value={fields.RecipientAddress}
+                  value={fields['RecipientAddress(*)']}
                   onChange={handleChange}
                   placeholder='Recipient Address'
                 />
@@ -129,9 +132,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='amountToCollect'
-                  name='AmountToCollect'
+                  name='AmountToCollect(*)'
                   type={'number'} 
-                  value={fields.AmountToCollect}
+                  value={fields['AmountToCollect(*)']}
                   onChange={handleChange}
                   placeholder='Amount'
                 />
@@ -139,9 +142,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='itemQuantity'
-                  name='ItemQuantity'
+                  name='ItemQuantity(*)'
                   type={'number'} 
-                  value={fields.ItemQuantity}
+                  value={fields['ItemQuantity(*)']}
                   onChange={handleChange}
                   placeholder='Item Quantity'
                 />
@@ -149,9 +152,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='itemWeight'
-                  name='ItemWeight'
+                  name='ItemWeight(*)'
                   type={'number'} 
-                  value={fields.ItemWeight}
+                  value={fields['ItemWeight(*)']}
                   onChange={handleChange}
                   placeholder='Item Weight'
                 />
@@ -159,9 +162,9 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
               <FormControl>
                 <Input
                   id='itemDescription'
-                  name='itemDescription'
+                  name='ItemDesc'
                   type={'text'} 
-                  value={fields.itemDescription}
+                  value={fields.ItemDesc}
                   onChange={handleChange}
                   placeholder='Item Description'
                 />

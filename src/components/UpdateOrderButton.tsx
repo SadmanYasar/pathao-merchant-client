@@ -26,14 +26,14 @@ const UpdateOrderButton = ({ item }: UpdateButtonProps) => {
             style={style}
             type='text' 
             name='RecipientName'
-            value={fields.RecipientName} 
+            value={fields['RecipientName(*)']} 
             onChange={handleChange} />
         <button
             type='button'
             onClick={() => {
                 db.shipmentOrders.update(
                     Number(item.id),
-                    { RecipientName: fields.RecipientName }
+                    { 'RecipientName(*)': fields['RecipientName(*)']}
                 )
             }}
             >

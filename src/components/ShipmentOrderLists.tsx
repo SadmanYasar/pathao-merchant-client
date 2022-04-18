@@ -32,7 +32,7 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const data: FormattedCSVData[] = items.map(({id, shipmentListId, itemDescription, ...rest}) => rest)
+    const data: FormattedCSVData[] = items.map(({id, shipmentListId, ...rest}) => rest)
 
     return(
         <Flex flexDirection={'column'} w='full' h='100vh' alignItems={'center'}>
@@ -71,7 +71,9 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                             css={{ boxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
                         }}>
                             <HStack w={'full'} spacing='10' justify={'space-between'}>
-                                <Text fontSize='2xl' isTruncated>{i.StoreName}</Text>
+                                <Text fontSize='2xl' isTruncated>
+                                    {i['RecipientName(*)']} - {i['RecipientPhone(*)']} - {i.ItemDesc}
+                                </Text>
                                 <IconButton 
                                     aria-label={'delete-shipment-entry'}
                                     type='button'
