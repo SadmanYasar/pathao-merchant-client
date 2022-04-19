@@ -3,9 +3,9 @@ import { db } from '../models/db'
 import { CSVLink } from 'react-csv'
 import { Link as RouterLink, useParams } from 'react-router-dom'
 import { FormattedCSVData } from '../types'
-import AddProductModal from '../ShipmentPage/AddProductModal'
+import AddProductModal from './AddProductModal'
 import { Box, Button, Flex, HStack, IconButton, Link, Text, VStack } from '@chakra-ui/react'
-import ToggleThemeButton from './ToggleThemeButton'
+import ToggleThemeButton from '../components/ToggleThemeButton'
 import { DeleteIcon } from '@chakra-ui/icons'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {

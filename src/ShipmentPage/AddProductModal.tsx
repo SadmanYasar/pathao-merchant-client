@@ -9,7 +9,7 @@ import {
     Modal,
     IconButton,
 } from "@chakra-ui/react"
-import ProductForm from "../components/ProductForm";
+import ProductForm from "./ProductForm";
 
 interface AddProductModalProps {
     id: number;

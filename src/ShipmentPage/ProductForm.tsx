@@ -78,10 +78,6 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onSubmit={handleSubmit as any}
           >
-            {/* <RadioGroupControl name="ItemType(*)" label='Item Type'>
-              <Radio value="parcel">Parcel</Radio>
-              <Radio value="document">Document</Radio>
-            </RadioGroupControl> */}
             <SelectControl
               name="ItemType(*)"
               selectProps={{ placeholder: "Select Item Type" }}
