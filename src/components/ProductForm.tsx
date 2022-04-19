@@ -1,14 +1,16 @@
-import { Box, Button, FormControl, HStack, Input, VStack } from '@chakra-ui/react';
-import React, { FormEvent, useState } from 'react'
+import { Box, Button, HStack } from '@chakra-ui/react';
+import { Formik, FormikState } from 'formik';
 import { db } from '../models/db';
 import { ShipmentOrder } from '../models/ShipmentOrder';
+import * as Yup from "yup";
+import { InputControl, SelectControl } from 'formik-chakra-ui';
 
 interface Props {
 	shipmentListId: number;
   onClose: () => void;
 }
 
-const initialValues: ShipmentOrder = {
+const initialOrderValues: ShipmentOrder = {
 	'ItemType(*)': 'parcel',
 	'StoreName(*)': '',
   MerchantOrderId: '',
@@ -18,166 +20,94 @@ const initialValues: ShipmentOrder = {
 	'RecipientZone(*)': '',
   RecipientArea: '',
 	'RecipientAddress(*)': '',
-	'AmountToCollect(*)': '',
-	'ItemQuantity(*)': '',
-	'ItemWeight(*)': '',
+	'AmountToCollect(*)': 0,
+	'ItemQuantity(*)': 1,
+	'ItemWeight(*)': 0,
 	ItemDesc: '',
   SpecialInstruction: ''
 }
 
-const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
-    const [fields, setfields] = useState<ShipmentOrder>(initialValues)
+const validationSchema = Yup.object({
+  'ItemType(*)': Yup.string().required('Item Type is required'),
+	'StoreName(*)': Yup.string().required('Store name is required'),
+  'RecipientName(*)': Yup.string().required('Recipient Name is required'),
+	'RecipientPhone(*)': Yup.string().required('Recipient Phone is required'),
+	'RecipientCity(*)': Yup.string().required('Recipient City is required'),
+	'RecipientZone(*)': Yup.string().required('Recipient Zone is required'),
+	'RecipientAddress(*)': Yup.string().required('Recipient Address is required'),
+	'AmountToCollect(*)': Yup.number().required('Must be 0 or greater').min(0),
+	'ItemQuantity(*)': Yup.number().required('Must be 1 or greater').min(1),
+	'ItemWeight(*)': Yup.number().required('Must be 0 or greater').min(0),
+	ItemDesc: Yup.string().required(),
+});
 
-    const handleSubmit = async (e : FormEvent<HTMLElement>) => {
-      e.preventDefault()
+const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
+    //const [fields, setfields] = useState<ShipmentOrder>(initialOrderValues)
+
+    const handleSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
 
       try {
         await db.shipmentOrders.add({
         shipmentListId: shipmentListId,
-          ...fields
+          ...values
         })
-        setfields({
-          ...initialValues, 
-          'ItemType(*)': fields['ItemType(*)'],
-          'StoreName(*)': fields['StoreName(*)'],
-          'ItemQuantity(*)': fields['ItemQuantity(*)'],
-          'ItemWeight(*)': fields['ItemWeight(*)']
-        })
+
+        resetForm()
 
       } catch (error: unknown) {
         console.log(error)
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleChange = ({ target }: any) => setfields({
-      ...fields,
-      [target.name]: target.value
-    })
-    
     return (
-        <Box w={'full'}>
-          <form onSubmit={handleSubmit}>
-            <VStack w={'full'} p='4' spacing={4}>
-              <FormControl>
-                <Input
-                  id='itemType'
-                  name='ItemType(*)'
-                  type={'text'}
-                  value={fields['ItemType(*)']}
-                  onChange={handleChange}
-                  placeholder='Item type'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='storeName'
-                  name='StoreName(*)'
-                  type={'text'}
-                  value={fields['StoreName(*)']}
-                  onChange={handleChange}
-                  placeholder='Store Name'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='recipientName'
-                  name='RecipientName(*)'
-                  type={'text'} 
-                  value={fields['RecipientName(*)']}
-                  onChange={handleChange}
-                  placeholder='Recipient Name'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='recipientPhone'
-                  name='RecipientPhone(*)'
-                  type={'text'} 
-                  value={fields['RecipientPhone(*)']}
-                  onChange={handleChange}
-                  placeholder='Recipient Phone'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='recipientCity'
-                  name='RecipientCity(*)'
-                  type={'text'} 
-                  value={fields['RecipientCity(*)']}
-                  onChange={handleChange}
-                  placeholder='Recipient City'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='recipientZone'
-                  name='RecipientZone(*)'
-                  type={'text'} 
-                  value={fields['RecipientZone(*)']}
-                  onChange={handleChange}
-                  placeholder='Recipient Zone'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='recipientAddress'
-                  name='RecipientAddress(*)'
-                  type={'text'} 
-                  value={fields['RecipientAddress(*)']}
-                  onChange={handleChange}
-                  placeholder='Recipient Address'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='amountToCollect'
-                  name='AmountToCollect(*)'
-                  type={'number'} 
-                  value={fields['AmountToCollect(*)']}
-                  onChange={handleChange}
-                  placeholder='Amount'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='itemQuantity'
-                  name='ItemQuantity(*)'
-                  type={'number'} 
-                  value={fields['ItemQuantity(*)']}
-                  onChange={handleChange}
-                  placeholder='Item Quantity'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='itemWeight'
-                  name='ItemWeight(*)'
-                  type={'number'} 
-                  value={fields['ItemWeight(*)']}
-                  onChange={handleChange}
-                  placeholder='Item Weight'
-                />
-              </FormControl>
-              <FormControl>
-                <Input
-                  id='itemDescription'
-                  name='ItemDesc'
-                  type={'text'} 
-                  value={fields.ItemDesc}
-                  onChange={handleChange}
-                  placeholder='Item Description'
-                />
-              </FormControl>
-              <HStack w={'full'} justifyContent='right'>
-                  <Button type='submit' bg='red.400' mr={3}>
-                  Save
-                  </Button>
-                  <Button onClick={onClose}>Cancel</Button>
-              </HStack>
-            </VStack>  
-          </form>
-        </Box>
+      <>
+        <Formik
+          initialValues={initialOrderValues}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          {({ handleSubmit, errors }) => (
+          <Box
+            borderWidth="1px"
+            rounded="lg"
+            shadow="1px 1px 3px rgba(0,0,0,0.3)"
+            maxWidth={800}
+            p={6}
+            m="10px auto"
+            as="form"
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            onSubmit={handleSubmit as any}
+          >
+            {/* <RadioGroupControl name="ItemType(*)" label='Item Type'>
+              <Radio value="parcel">Parcel</Radio>
+              <Radio value="document">Document</Radio>
+            </RadioGroupControl> */}
+            <SelectControl
+              name="ItemType(*)"
+              selectProps={{ placeholder: "Select Item Type" }}
+            >
+              <option value="parcel">Parcel</option>
+              <option value="document">Document</option>
+            </SelectControl>
+            <InputControl name='StoreName(*)' label="Store Name" />
+            <InputControl name='RecipientName(*)' label="Recipient Name" />
+            <InputControl name='RecipientPhone(*)' label="Recipient Phone" />
+            <InputControl name='RecipientCity(*)' label="Recipient City" />
+            <InputControl name='RecipientZone(*)' label="Recipient Zone" />
+            <InputControl name='RecipientAddress(*)' label="Recipient Address" />
+            <InputControl name='AmountToCollect(*)' label="Due" />
+            <InputControl name='ItemQuantity(*)' label="Item Quantity" />
+            <InputControl name='ItemWeight(*)' label="Item Weight" />
+            <InputControl name='ItemDesc' label="Item Description" />
+            <HStack w={'full'} justifyContent='right' paddingTop={4}>
+              <Button type='submit' bg='red.400' mr={3} disabled={errors === {}}>
+              Save
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </HStack>
+          </Box>)}
+        </Formik>
+      </>
     )
 }
 

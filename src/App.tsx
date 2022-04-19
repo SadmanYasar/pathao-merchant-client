@@ -12,6 +12,7 @@ const App = () => {
   /**
    * *DONE - Change shipment types to match spreadsheet entries
    * TODO - Add update form
+   * TODO - Add form validation using formik
    * TODO - Add error component
    * TODO - Use formik
    * TODO - Use Bootstrap/ChakraUI/MaterialUI
