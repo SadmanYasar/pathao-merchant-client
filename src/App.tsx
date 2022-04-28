@@ -15,7 +15,7 @@ const App = () => {
    * TODO - Add form validation using formik
    * TODO - Add error component
    * TODO - Use formik
-   * TODO - Use Bootstrap/ChakraUI/MaterialUI
+   * TODO - Add modal cards for each shipment item
    */
 
   return (
