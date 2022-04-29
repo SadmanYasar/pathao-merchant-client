@@ -1,6 +1,6 @@
 import { DeleteIcon } from '@chakra-ui/icons';
-import { Box, Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
-import React, { useState } from 'react'
+import { Box, Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Tr, useDisclosure } from '@chakra-ui/react';
+import { useState } from 'react'
 import { db } from '../models/db';
 import { ShipmentOrder } from '../models/ShipmentOrder';
 
@@ -15,9 +15,20 @@ const EntryDetail = ({ item, visible } : Props) => {
     const arr = Object.entries(rest)
     return(
         <Box>
-            {visible && <>
-                {arr.map((i, index) => <p key={index}>{i[0].replace('(*)', '')} - {i[1]}</p>)}
-            </>}
+        {visible && 
+        <>
+        <TableContainer>
+            <Table variant='striped' colorScheme='red'>
+                <Tbody>
+                {arr.map((i, index) => 
+                    <Tr key={index}>
+                        <Td>{i[0].replace('(*)', '')}</Td>
+                        <Td isNumeric>{i[1]}</Td>
+                    </Tr>)}
+                </Tbody>
+            </Table>
+        </TableContainer>
+        </>}
             {/* {!visible && } */}
         </Box>
     )
