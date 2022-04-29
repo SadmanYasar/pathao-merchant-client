@@ -42,7 +42,6 @@ const validationSchema = Yup.object({
 });
 
 const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
-    //const [fields, setfields] = useState<ShipmentOrder>(initialOrderValues)
 
     const handleSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
 
