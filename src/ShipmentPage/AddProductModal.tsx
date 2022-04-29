@@ -8,6 +8,8 @@ import {
     ModalBody, 
     Modal,
     IconButton,
+    Button,
+    HStack,
 } from "@chakra-ui/react"
 import { ShipmentOrder } from "../models/ShipmentOrder";
 import ProductForm from "./ProductForm";
@@ -68,6 +70,12 @@ const AddProductModal = (props : AddProductModalProps) => {
             <ModalCloseButton />
             <ModalBody pb={6}>
                 <ProductForm shipmentListId={props.id} onClose={onClose} toAdd={true} initialValues={initialValues} />
+                <HStack w={'full'} justifyContent='right' paddingTop={4}>
+                    <Button form='product-form' type='submit' bg='red.400' mr={3}>
+                    Save
+                    </Button>
+                    <Button onClick={onClose}>Cancel</Button>
+                </HStack>
             </ModalBody>
             </ModalContent>
         </Modal>

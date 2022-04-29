@@ -1,4 +1,4 @@
-import { Box, Button, HStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { Formik, FormikState } from 'formik';
 import { db } from '../models/db';
 import { ShipmentOrder } from '../models/ShipmentOrder';
@@ -63,7 +63,7 @@ const ProductForm = (props: Props): JSX.Element => {
           onSubmit={props.toAdd? onSubmit : handleUpdate}
           validationSchema={validationSchema}
         >
-          {({ handleSubmit, errors }) => (
+          {({ handleSubmit }) => (
           <Box
             borderWidth="1px"
             rounded="lg"
@@ -93,14 +93,6 @@ const ProductForm = (props: Props): JSX.Element => {
             <InputControl name='ItemQuantity(*)' label="Item Quantity" />
             <InputControl name='ItemWeight(*)' label="Item Weight" />
             <InputControl name='ItemDesc' label="Item Description" />
-            {props.toAdd ?
-              <HStack w={'full'} justifyContent='right' paddingTop={4}>
-                <Button type='submit' bg='red.400' mr={3} disabled={errors === {}}>
-                Save
-                </Button>
-                <Button onClick={props.onClose}>Cancel</Button>
-              </HStack>
-            : <></>}
           </Box>)}
         </Formik>
       </>
