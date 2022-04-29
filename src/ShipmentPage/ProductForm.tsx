@@ -5,11 +5,6 @@ import { ShipmentOrder } from '../models/ShipmentOrder';
 import * as Yup from "yup";
 import { InputControl, SelectControl } from 'formik-chakra-ui';
 
-interface Props {
-	shipmentListId: number;
-  onClose: () => void;
-}
-
 const initialOrderValues: ShipmentOrder = {
 	'ItemType(*)': 'parcel',
 	'StoreName(*)': '',
@@ -40,6 +35,11 @@ const validationSchema = Yup.object({
 	'ItemWeight(*)': Yup.number().required('Must be 0 or greater').min(0),
 	ItemDesc: Yup.string().required(),
 });
+
+interface Props {
+	shipmentListId: number;
+  onClose: () => void;
+}
 
 const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
 

@@ -1,16 +1,31 @@
 import { DeleteIcon } from '@chakra-ui/icons';
 import { Box, Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react';
-import React from 'react'
+import React, { useState } from 'react'
 import { db } from '../models/db';
 import { ShipmentOrder } from '../models/ShipmentOrder';
 
-interface CardModalProps {
+interface Props {
     item: ShipmentOrder;
+    visible?: boolean;
 }
 
-const CardModal = ({ item } : CardModalProps): JSX.Element => {
+const EntryDetail = ({ item, visible } : Props) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { id, shipmentListId, MerchantOrderId, ...rest } = item
+    const arr = Object.entries(rest)
+    return(
+        <Box>
+            {visible && <>
+                {arr.map((i, index) => <p key={index}>{i[0].replace('(*)', '')} - {i[1]}</p>)}
+            </>}
+            {/* {!visible && } */}
+        </Box>
+    )
+}
+
+const CardModal = ({ item } : Props): JSX.Element => {
+    const [visible, setvisible] = useState(true)
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const data = Object.values(item)
 
     return(
         <>
@@ -52,12 +67,15 @@ const CardModal = ({ item } : CardModalProps): JSX.Element => {
             >
             <ModalOverlay />
             <ModalContent>
-            <ModalHeader>Modal Title</ModalHeader>
+            <ModalHeader>Details</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                {data.map((i,index) => <p key={index}>{i}</p>)}
+                <EntryDetail item={item} visible={visible} />
             </ModalBody>
             <ModalFooter>
+                <Button mr={3} onClick={() => setvisible(!visible)}>
+                    {visible ? 'Update' : 'Cancel'}
+                </Button>
                 <Button onClick={onClose}>Close</Button>
             </ModalFooter>
             </ModalContent>
