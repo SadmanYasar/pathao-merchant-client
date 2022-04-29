@@ -5,23 +5,6 @@ import { ShipmentOrder } from '../models/ShipmentOrder';
 import * as Yup from "yup";
 import { InputControl, SelectControl } from 'formik-chakra-ui';
 
-const initialOrderValues: ShipmentOrder = {
-	'ItemType(*)': 'parcel',
-	'StoreName(*)': '',
-  MerchantOrderId: '',
-  'RecipientName(*)': '',
-	'RecipientPhone(*)': '',
-	'RecipientCity(*)': '',
-	'RecipientZone(*)': '',
-  RecipientArea: '',
-	'RecipientAddress(*)': '',
-	'AmountToCollect(*)': 0,
-	'ItemQuantity(*)': 1,
-	'ItemWeight(*)': 0,
-	ItemDesc: '',
-  SpecialInstruction: ''
-}
-
 const validationSchema = Yup.object({
   'ItemType(*)': Yup.string().required('Item Type is required'),
 	'StoreName(*)': Yup.string().required('Store name is required'),
@@ -37,17 +20,20 @@ const validationSchema = Yup.object({
 });
 
 interface Props {
-	shipmentListId: number;
-  onClose: () => void;
+  id?: number;
+  toAdd: boolean;
+  initialValues: ShipmentOrder;
+	shipmentListId?: number;
+  onClose?: () => void;
 }
 
-const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
+const ProductForm = (props: Props): JSX.Element => {
 
-    const handleSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
+    const onSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
 
       try {
         await db.shipmentOrders.add({
-        shipmentListId: shipmentListId,
+        shipmentListId: props.shipmentListId,
           ...values
         })
 
@@ -58,11 +44,23 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
       }
     }
 
+    const handleUpdate = async (values: ShipmentOrder) => {
+      try {
+        await db.shipmentOrders.update(
+          Number(props.id),
+          {...values}
+        )
+
+      } catch (error: unknown) {
+        console.log(error)
+      }
+    }
+
     return (
       <>
         <Formik
-          initialValues={initialOrderValues}
-          onSubmit={handleSubmit}
+          initialValues={props.initialValues}
+          onSubmit={props.toAdd? onSubmit : handleUpdate}
           validationSchema={validationSchema}
         >
           {({ handleSubmit, errors }) => (
@@ -74,6 +72,7 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
             p={6}
             m="10px auto"
             as="form"
+            id='product-form'
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onSubmit={handleSubmit as any}
           >
@@ -94,12 +93,14 @@ const ProductForm = ({ shipmentListId, onClose }: Props): JSX.Element => {
             <InputControl name='ItemQuantity(*)' label="Item Quantity" />
             <InputControl name='ItemWeight(*)' label="Item Weight" />
             <InputControl name='ItemDesc' label="Item Description" />
-            <HStack w={'full'} justifyContent='right' paddingTop={4}>
-              <Button type='submit' bg='red.400' mr={3} disabled={errors === {}}>
-              Save
-              </Button>
-              <Button onClick={onClose}>Cancel</Button>
-            </HStack>
+            {props.toAdd ?
+              <HStack w={'full'} justifyContent='right' paddingTop={4}>
+                <Button type='submit' bg='red.400' mr={3} disabled={errors === {}}>
+                Save
+                </Button>
+                <Button onClick={props.onClose}>Cancel</Button>
+              </HStack>
+            : <></>}
           </Box>)}
         </Formik>
       </>

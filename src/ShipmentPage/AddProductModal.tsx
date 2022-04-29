@@ -9,7 +9,25 @@ import {
     Modal,
     IconButton,
 } from "@chakra-ui/react"
+import { ShipmentOrder } from "../models/ShipmentOrder";
 import ProductForm from "./ProductForm";
+
+const initialValues: ShipmentOrder = {
+	'ItemType(*)': 'parcel',
+	'StoreName(*)': '',
+    MerchantOrderId: '',
+    'RecipientName(*)': '',
+	'RecipientPhone(*)': '',
+	'RecipientCity(*)': '',
+	'RecipientZone(*)': '',
+    RecipientArea: '',
+	'RecipientAddress(*)': '',
+	'AmountToCollect(*)': 0,
+	'ItemQuantity(*)': 1,
+	'ItemWeight(*)': 0,
+	ItemDesc: '',
+    SpecialInstruction: ''
+}
 
 interface AddProductModalProps {
     id: number;
@@ -49,7 +67,7 @@ const AddProductModal = (props : AddProductModalProps) => {
             <ModalHeader>{props.header}</ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>
-                <ProductForm shipmentListId={props.id} onClose={onClose}/>
+                <ProductForm shipmentListId={props.id} onClose={onClose} toAdd={true} initialValues={initialValues} />
             </ModalBody>
             </ModalContent>
         </Modal>

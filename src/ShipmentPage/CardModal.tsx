@@ -3,13 +3,18 @@ import { Box, Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, Mo
 import { useState } from 'react'
 import { db } from '../models/db';
 import { ShipmentOrder } from '../models/ShipmentOrder';
+import ProductForm from './ProductForm';
 
 interface Props {
     item: ShipmentOrder;
-    visible?: boolean;
 }
 
-const EntryDetail = ({ item, visible } : Props) => {
+interface EntryDetailProps {
+    item: ShipmentOrder;
+    visible: boolean;
+}
+
+const EntryDetail = ({ item, visible } : EntryDetailProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, shipmentListId, MerchantOrderId, ...rest } = item
     const arr = Object.entries(rest)
@@ -29,7 +34,12 @@ const EntryDetail = ({ item, visible } : Props) => {
             </Table>
         </TableContainer>
         </>}
-            {/* {!visible && } */}
+        {!visible &&
+        <>
+            <Button form='product-form' type='submit'>Update</Button>
+            <ProductForm initialValues={item} toAdd={false} id={id} />
+        </>
+        }
         </Box>
     )
 }
