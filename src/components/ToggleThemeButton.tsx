@@ -1,6 +1,6 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons"
-import { Box, Flex, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react"
-import { AnimatePresence, motion } from "framer-motion"
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Box, Flex, IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const ToggleThemeButton = () => {
     const { toggleColorMode } = useColorMode()
@@ -23,7 +23,7 @@ const ToggleThemeButton = () => {
                         >
                             <IconButton
                             onClick={toggleColorMode}
-                            variant="ghost"
+                            variant='ghost'
                             aria-label='change theme'
                             fontSize='30px'
                             isRound={true}

@@ -1,11 +1,11 @@
-import { Box, Flex, GridItem, Heading, SimpleGrid, VStack } from "@chakra-ui/react"
-import { useLiveQuery } from "dexie-react-hooks"
-import { useState, useEffect, FormEvent } from "react"
-import { db } from "../models/db"
-import { ShipmentList } from "../models/ShipmentList"
-import AddShipmentButton from "./AddShipmentButton."
-import SearchBar from "./SearchBar"
-import ShipmentLists from "./ShipmentLists"
+import { Box, Flex, GridItem, Heading, SimpleGrid, VStack } from '@chakra-ui/react'
+import { useLiveQuery } from 'dexie-react-hooks'
+import { useState, useEffect, FormEvent } from 'react'
+import { db } from '../models/db'
+import { ShipmentList } from '../models/ShipmentList'
+import AddShipmentButton from '../components/AddShipmentButton.'
+import SearchBar from '../components/SearchBar'
+import ShipmentLists from './ShipmentLists'
 
 const SearchOrAddShipment = (): JSX.Element => {
     const lists = useLiveQuery(
@@ -61,7 +61,7 @@ const SearchOrAddShipment = (): JSX.Element => {
             flexDirection={'column'}
             height='full'
             py={[5, 10, 20]}
-            alignItems="center">
+            alignItems='center'>
             <VStack
                 w={{ base: 'full', md: '50%' }}
                 h='full'
@@ -70,7 +70,7 @@ const SearchOrAddShipment = (): JSX.Element => {
                 <Heading as={'h1'} size='2xl'>Shipments</Heading>
                     <Box w={'full'}>
                     <form onSubmit={handleSubmit}>
-                        <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
+                        <SimpleGrid columns={2} columnGap={3} rowGap={6} w='full'>
                             <GridItem colSpan={colspan}>
                                 <SearchBar 
                                     onChange={({ target }) => settitle(target.value)}

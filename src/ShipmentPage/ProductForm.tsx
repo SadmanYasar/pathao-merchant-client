@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { Formik, FormikState } from 'formik';
 import { db } from '../models/db';
 import { ShipmentOrder } from '../models/ShipmentOrder';
-import * as Yup from "yup";
+import * as Yup from 'yup';
 import { InputControl, SelectControl } from 'formik-chakra-ui';
 
 const validationSchema = Yup.object({
@@ -65,34 +65,34 @@ const ProductForm = (props: Props): JSX.Element => {
         >
           {({ handleSubmit }) => (
           <Box
-            borderWidth="1px"
-            rounded="lg"
-            shadow="1px 1px 3px rgba(0,0,0,0.3)"
+            borderWidth='1px'
+            rounded='lg'
+            shadow='1px 1px 3px rgba(0,0,0,0.3)'
             maxWidth={800}
             p={6}
-            m="10px auto"
-            as="form"
+            m='10px auto'
+            as='form'
             id='product-form'
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onSubmit={handleSubmit as any}
           >
             <SelectControl
-              name="ItemType(*)"
-              selectProps={{ placeholder: "Select Item Type" }}
+              name='ItemType(*)'
+              selectProps={{ placeholder: 'Select Item Type' }}
             >
-              <option value="parcel">Parcel</option>
-              <option value="document">Document</option>
+              <option value='parcel'>Parcel</option>
+              <option value='document'>Document</option>
             </SelectControl>
-            <InputControl name='StoreName(*)' label="Store Name" />
-            <InputControl name='RecipientName(*)' label="Recipient Name" />
-            <InputControl name='RecipientPhone(*)' label="Recipient Phone" />
-            <InputControl name='RecipientCity(*)' label="Recipient City" />
-            <InputControl name='RecipientZone(*)' label="Recipient Zone" />
-            <InputControl name='RecipientAddress(*)' label="Recipient Address" />
-            <InputControl name='AmountToCollect(*)' label="Due" />
-            <InputControl name='ItemQuantity(*)' label="Item Quantity" />
-            <InputControl name='ItemWeight(*)' label="Item Weight" />
-            <InputControl name='ItemDesc' label="Item Description" />
+            <InputControl name='StoreName(*)' label='Store Name' />
+            <InputControl name='RecipientName(*)' label='Recipient Name' />
+            <InputControl name='RecipientPhone(*)' label='Recipient Phone' />
+            <InputControl name='RecipientCity(*)' label='Recipient City' />
+            <InputControl name='RecipientZone(*)' label='Recipient Zone' />
+            <InputControl name='RecipientAddress(*)' label='Recipient Address' />
+            <InputControl name='AmountToCollect(*)' label='Due' />
+            <InputControl name='ItemQuantity(*)' label='Item Quantity' />
+            <InputControl name='ItemWeight(*)' label='Item Weight' />
+            <InputControl name='ItemDesc' label='Item Description' />
           </Box>)}
         </Formik>
       </>

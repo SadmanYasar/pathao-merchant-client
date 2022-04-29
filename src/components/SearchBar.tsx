@@ -1,5 +1,5 @@
-import { FormControl, InputGroup, Input, InputRightElement } from "@chakra-ui/react"
-import ClearButton from "../components/ClearButton"
+import { FormControl, InputGroup, Input, InputRightElement } from '@chakra-ui/react'
+import ClearButton from './ClearButton'
 
 interface SearchBarProps {
     value: string;
@@ -16,7 +16,7 @@ const SearchBar = (props : SearchBarProps) => {
                     id='title' 
                     type='text' 
                     value={props.value}
-                    size="lg"
+                    size='lg'
                     onChange={props.onChange}
                     placeholder='Search or add a shipment'
                 />
