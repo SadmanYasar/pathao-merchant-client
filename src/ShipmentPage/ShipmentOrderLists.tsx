@@ -4,9 +4,9 @@ import { CSVLink } from 'react-csv'
 import { Link as RouterLink, useParams } from 'react-router-dom'
 import { FormattedCSVData } from '../types'
 import AddProductModal from './AddProductModal'
-import { Box, Button, Flex, HStack, IconButton, Link, Text, VStack } from '@chakra-ui/react'
+import { Button, Flex, HStack, Link, Text, VStack } from '@chakra-ui/react'
 import ToggleThemeButton from '../components/ToggleThemeButton'
-import { DeleteIcon } from '@chakra-ui/icons'
+import CardModal from './CardModal'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {
 
@@ -62,49 +62,9 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                     </Button>
 
                     {items
-                        .map(i => 
-                        <Box
-                            key={i.id}
-                            p={5}
-                            m={3}
-                            w='full'
-                            css={{ boxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
-                        }}>
-                            <HStack w={'full'} spacing='10' justify={'space-between'}>
-                                <Text fontSize='2xl' isTruncated>
-                                    {i['RecipientName(*)']} - {i['RecipientPhone(*)']} - {i.ItemDesc}
-                                </Text>
-                                <IconButton 
-                                    aria-label={'delete-shipment-entry'}
-                                    type='button'
-                                    color={'white'}
-                                    bg='red.400'
-                                    isRound
-                                    _hover={{
-                                        bgColor: 'red.500'
-                                    
-                                    }}
-                                    _active={{
-                                        bgColor: 'red.500'
-                                    }}
-                                    icon={<DeleteIcon boxSize={6} />}
-                                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                                    onClick={() => db.shipmentOrders.delete(Number(i.id))}
-                                />
-                            </HStack>
-                        </Box>)}
-
-{/*                     <ul>
-                    {items?.map(i => <li key={i.id}>
-                        {i.StoreName} - {i.RecipientPhone} - {i.itemDescription}
-                            <button 
-                                type='button' 
-                                onClick={() => db.shipmentOrders.delete(Number(i.id))}>
-                                Delete
-                            </button>
-                            <UpdateOrderButton item={i} />
-                    </li>)}
-                </ul> */}
+                        .map(i =>
+                            <CardModal key={i.id} item={i} /> 
+                    )}
             </VStack>
         </Flex>
     )
