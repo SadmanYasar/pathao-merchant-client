@@ -41,6 +41,9 @@ const SearchOrAddShipment = (): JSX.Element => {
 
     const handleSubmit = async (e : FormEvent<HTMLElement>) => {
         e.preventDefault()
+
+        if(!title) return null
+
         try {
             await db.shipmentLists
                 .add({ title: title })
