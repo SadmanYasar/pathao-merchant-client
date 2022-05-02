@@ -3,7 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { useState, useEffect, FormEvent } from 'react'
 import { db } from '../models/db'
 import { ShipmentList } from '../models/ShipmentList'
-import AddShipmentButton from '../components/AddShipmentButton.'
+import AddShipmentButton from '../components/AddShipmentButton'
 import SearchBar from '../components/SearchBar'
 import ShipmentLists from './ShipmentLists'
 
