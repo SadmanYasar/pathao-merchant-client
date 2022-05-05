@@ -1,4 +1,4 @@
-import { AddIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons'
 import { 
     useDisclosure, 
     ModalOverlay, 
@@ -11,8 +11,8 @@ import {
     Button,
     HStack,
 } from '@chakra-ui/react'
-import { ShipmentOrder } from '../models/ShipmentOrder';
-import ProductForm from './ProductForm';
+import { ShipmentOrder } from '../models/ShipmentOrder'
+import ProductForm from './ProductForm'
 
 const initialValues: ShipmentOrder = {
 	'ItemType(*)': 'parcel',

@@ -1,9 +1,9 @@
-import { DeleteIcon } from '@chakra-ui/icons';
-import { Box, Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Tr, useDisclosure } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons'
+import { Box, Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Tr, useDisclosure } from '@chakra-ui/react'
 import { useState } from 'react'
-import { db } from '../models/db';
-import { ShipmentOrder } from '../models/ShipmentOrder';
-import ProductForm from './ProductForm';
+import { db } from '../models/db'
+import { ShipmentOrder } from '../models/ShipmentOrder'
+import ProductForm from './ProductForm'
 
 interface Props {
     item: ShipmentOrder;
@@ -105,4 +105,4 @@ const CardModal = ({ item } : Props): JSX.Element => {
     )
 }
 
-export default CardModal;
+export default CardModal

@@ -1,7 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-//import './index.css';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 import { ChakraProvider } from '@chakra-ui/react'
 
 ReactDOM.render(
@@ -9,4 +8,4 @@ ReactDOM.render(
     <App />
   </ChakraProvider>,
   document.getElementById('root')
-);
+)

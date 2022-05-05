@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from 'react-router-dom'
-import ShipmentOrdersLists from './ShipmentPage/ShipmentOrderLists';
-import ShipmentListPage from './ShipmentListPage/index';
-import { Container } from '@chakra-ui/react';
+import ShipmentOrdersLists from './ShipmentPage/ShipmentOrderLists'
+import ShipmentListPage from './ShipmentListPage/index'
+import { Container } from '@chakra-ui/react'
 
 const App = () => {
   /**
@@ -22,7 +22,7 @@ const App = () => {
       </Routes>
     </Router>
     </Container>
-  );
+  )
 }
 
-export default App;
+export default App

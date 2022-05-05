@@ -1,9 +1,9 @@
-import { Box } from '@chakra-ui/react';
-import { Formik, FormikState } from 'formik';
-import { db } from '../models/db';
-import { ShipmentOrder } from '../models/ShipmentOrder';
-import * as Yup from 'yup';
-import { InputControl, SelectControl } from 'formik-chakra-ui';
+import { Box } from '@chakra-ui/react'
+import { Formik, FormikState } from 'formik'
+import { db } from '../models/db'
+import { ShipmentOrder } from '../models/ShipmentOrder'
+import * as Yup from 'yup'
+import { InputControl, SelectControl } from 'formik-chakra-ui'
 
 const validationSchema = Yup.object({
   'ItemType(*)': Yup.string().required('Item Type is required'),
@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
 	'ItemQuantity(*)': Yup.number().required('Must be 1 or greater').min(1),
 	'ItemWeight(*)': Yup.number().required('Must be 0 or greater').min(0),
 	ItemDesc: Yup.string().required(),
-});
+})
 
 interface Props {
   id?: number;

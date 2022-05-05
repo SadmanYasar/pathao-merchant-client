@@ -10,7 +10,7 @@ import CardModal from './CardModal'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {
 
-    const id = Number(useParams().id);
+    const id = Number(useParams().id)
 
     const items = useLiveQuery(
         () => db.shipmentOrders
