@@ -15,7 +15,7 @@ const validationSchema = Yup.object({
 	'RecipientAddress(*)': Yup.string().required('Recipient Address is required'),
 	'AmountToCollect(*)': Yup.number().required('Must be 0 or greater').min(0),
 	'ItemQuantity(*)': Yup.number().required('Must be 1 or greater').min(1),
-	'ItemWeight(*)': Yup.number().required('Must be 0 or greater').min(0),
+	'ItemWeight(*)': Yup.number().required('Must be 0.5 or greater').min(0.5),
 	ItemDesc: Yup.string().required(),
 })
 
