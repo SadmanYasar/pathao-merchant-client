@@ -3,8 +3,6 @@ import SearchBar from './SearchBar'
 
 describe('<SearchBar />', () => { 
     it('renders correctly', () => {
-        const mock1 = jest.fn()
-        const mock2 = jest.fn()
         const tree = Renderer.create(
             <SearchBar 
                 value='' 
@@ -58,5 +56,4 @@ describe('<SearchBar />', () => {
 </div>
 `)
     })
-
 })
