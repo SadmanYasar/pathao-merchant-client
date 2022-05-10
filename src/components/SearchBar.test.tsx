@@ -1,6 +1,9 @@
 import Renderer from 'react-test-renderer'
 import SearchBar from './SearchBar'
 
+const mock1 = jest.fn()
+const mock2 = jest.fn()
+
 describe('<SearchBar />', () => { 
     it('renders correctly', () => {
         const tree = Renderer.create(
