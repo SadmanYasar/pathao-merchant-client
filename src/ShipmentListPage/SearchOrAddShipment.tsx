@@ -20,7 +20,7 @@ const SearchOrAddShipment = (): JSX.Element => {
     const [visible, setvisible] = useState<boolean>(false)
 
     useEffect(() => {
-        if (!title) {
+        if (!title.trim()) {
             setvisible(false)
             return setfilters([])
         }
