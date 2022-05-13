@@ -30,7 +30,7 @@ const SearchOrAddShipment = (): JSX.Element => {
         }
 
         try {
-            const re = new RegExp(title, 'i')
+            const re = new RegExp(title.trim(), 'i')
             const result = lists?.filter(li => re.test(li.title))
             result ? setfilters(result) : setfilters([])
         } catch (error) {
@@ -46,7 +46,7 @@ const SearchOrAddShipment = (): JSX.Element => {
 
         try {
             await db.shipmentLists
-                .add({ title: title })
+                .add({ title: title.trim() })
         } catch (e: unknown) {
             console.log(e)
             //TODO - ADD ERROR COMPONENT
