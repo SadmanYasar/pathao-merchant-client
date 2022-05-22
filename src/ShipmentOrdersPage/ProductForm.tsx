@@ -55,10 +55,13 @@ const ProductForm = (props: Props): JSX.Element => {
     }
 
     const handleUpdate = async (values: ShipmentOrder) => {
+
+      const formattedValues = validationSchema.cast(values) as ShipmentOrder
+
       try {
         await db.shipmentOrders.update(
           Number(props.id),
-          {...values}
+          {...formattedValues}
         )
 
       } catch (error: unknown) {
