@@ -1,47 +1,25 @@
 import { DeleteIcon } from '@chakra-ui/icons'
-import { Box, Button, HStack, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Text, Tr, useDisclosure } from '@chakra-ui/react'
+import { 
+    Box, 
+    Button, 
+    HStack, 
+    IconButton, 
+    Modal,
+    ModalBody, 
+    ModalCloseButton, 
+    ModalContent, 
+    ModalFooter, 
+    ModalHeader, 
+    ModalOverlay, 
+    Text, 
+    useDisclosure } from '@chakra-ui/react'
 import { useState } from 'react'
 import { db } from '../models/db'
 import { ShipmentOrder } from '../models/ShipmentOrder'
-import ProductForm from './ProductForm'
+import EntryDetail from './EntryDetail'
 
 interface Props {
     item: ShipmentOrder;
-}
-
-interface EntryDetailProps {
-    item: ShipmentOrder;
-    visible: boolean;
-}
-
-const EntryDetail = ({ item, visible } : EntryDetailProps) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { id, shipmentListId, MerchantOrderId, ...rest } = item
-    const arr = Object.entries(rest)
-    return(
-        <Box>
-        {visible && 
-        <>
-        <TableContainer>
-            <Table variant='striped' colorScheme='red'>
-                <Tbody>
-                {arr.map((i, index) => 
-                    <Tr key={index}>
-                        <Td>{i[0].replace('(*)', '')}</Td>
-                        <Td isNumeric>{i[1]}</Td>
-                    </Tr>)}
-                </Tbody>
-            </Table>
-        </TableContainer>
-        </>}
-        {!visible &&
-        <>
-            <Button form='product-form' type='submit'>Update</Button>
-            <ProductForm initialValues={item} toAdd={false} id={id} />
-        </>
-        }
-        </Box>
-    )
 }
 
 const CardModal = ({ item } : Props): JSX.Element => {
