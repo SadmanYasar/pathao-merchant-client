@@ -5,18 +5,25 @@ import { ShipmentOrder } from '../models/ShipmentOrder'
 import * as Yup from 'yup'
 import { InputControl, SelectControl } from 'formik-chakra-ui'
 
+/*
+===============================================================
+Recipient zone is kept not required
+Need to add feature where zone can be chosen from address input
+But might need to change later
+===============================================================
+*/
 const validationSchema = Yup.object({
   'ItemType(*)': Yup.string().required('Item Type is required'),
-	'StoreName(*)': Yup.string().required('Store name is required'),
-  'RecipientName(*)': Yup.string().required('Recipient Name is required'),
-	'RecipientPhone(*)': Yup.string().required('Recipient Phone is required'),
-	'RecipientCity(*)': Yup.string().required('Recipient City is required'),
-	'RecipientZone(*)': Yup.string().required('Recipient Zone is required'),
-	'RecipientAddress(*)': Yup.string().required('Recipient Address is required'),
+	'StoreName(*)': Yup.string().required('Store name is required').trim(),
+  'RecipientName(*)': Yup.string().required('Recipient Name is required').trim(),
+	'RecipientPhone(*)': Yup.string().required('Recipient Phone is required').trim(),
+	'RecipientCity(*)': Yup.string().required('Recipient City is required').trim(),
+	'RecipientZone(*)': Yup.string().trim(),
+	'RecipientAddress(*)': Yup.string().required('Recipient Address is required').trim(),
 	'AmountToCollect(*)': Yup.number().required('Must be 0 or greater').min(0),
 	'ItemQuantity(*)': Yup.number().required('Must be 1 or greater').min(1),
 	'ItemWeight(*)': Yup.number().required('Must be 0.5 or greater').min(0.5),
-	ItemDesc: Yup.string().required(),
+	ItemDesc: Yup.string().required().trim(),
 })
 
 interface Props {
@@ -31,10 +38,13 @@ const ProductForm = (props: Props): JSX.Element => {
 
     const onSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
 
+      const formattedValues = validationSchema.cast(values) as ShipmentOrder
+      console.log(formattedValues)
+
       try {
         await db.shipmentOrders.add({
         shipmentListId: props.shipmentListId,
-          ...values
+          ...formattedValues
         })
 
         resetForm()
