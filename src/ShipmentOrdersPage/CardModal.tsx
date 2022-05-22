@@ -34,7 +34,8 @@ const CardModal = ({ item } : Props): JSX.Element => {
             m={3}
             w='full'
             css={{ boxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
-        }}>
+            }}
+            bgColor={'whiteAlpha.300'}>
             <HStack w={'full'} spacing='10' justify={'space-between'}>
                 <Text fontSize='2xl' isTruncated onClick={onOpen}>
                     {item['RecipientName(*)']} - {item['RecipientPhone(*)']} - {item.ItemDesc}

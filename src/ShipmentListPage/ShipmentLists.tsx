@@ -22,7 +22,8 @@ const ShipmentLists = ({ list }: ShipmentListsProps): JSX.Element => {
                     p={5}
                     m={3}
                     css={{ boxShadow: 'rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px',
-                    }}>
+                    }}
+                    bgColor={'whiteAlpha.300'}>
                     <HStack w={'full'} spacing='10' justify={'space-between'}>
                         <Link as={RouteLink} to={`/shipments/${li.id}`} isTruncated>
                             <Text fontSize='2xl' isTruncated>{li.title}</Text>                      
