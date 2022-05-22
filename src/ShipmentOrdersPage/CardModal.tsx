@@ -73,7 +73,7 @@ const CardModal = ({ item } : Props): JSX.Element => {
             </ModalBody>
             <ModalFooter>
                 <Button mr={3} onClick={() => setvisible(!visible)}>
-                    {visible ? 'Update' : 'Cancel'}
+                    {visible ? 'Update' : 'Back'}
                 </Button>
                 <Button onClick={onClose}>Close</Button>
             </ModalFooter>
