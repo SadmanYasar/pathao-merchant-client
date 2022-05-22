@@ -4,9 +4,9 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
-import ShipmentOrdersLists from './ShipmentPage/ShipmentOrderLists'
 import ShipmentListPage from './ShipmentListPage/index'
 import { Container } from '@chakra-ui/react'
+import ShipmentOrdersPage from './ShipmentOrdersPage'
 
 const App = () => {
   /**
@@ -18,7 +18,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path='/' element={<ShipmentListPage />} />
-        <Route path='/shipments/:id' element={<ShipmentOrdersLists />} />
+        <Route path='/shipments/:id' element={<ShipmentOrdersPage />} />
       </Routes>
     </Router>
     </Container>

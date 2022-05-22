@@ -1,11 +1,10 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from '../models/db'
 import { CSVLink } from 'react-csv'
-import { Link as RouterLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { FormattedCSVData } from '../types'
 import AddProductModal from './AddProductModal'
-import { Button, Flex, HStack, Link, Text, VStack } from '@chakra-ui/react'
-import ToggleThemeButton from '../components/ToggleThemeButton'
+import { Button, VStack } from '@chakra-ui/react'
 import CardModal from './CardModal'
 
 const ShipmentOrdersLists = (): JSX.Element | null => {
@@ -35,14 +34,7 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
     const data: FormattedCSVData[] = items.map(({id, shipmentListId, ...rest}) => rest)
 
     return(
-        <Flex flexDirection={'column'} w='full' h='100vh' alignItems={'center'}>
-            <HStack paddingLeft={4} w={'full'}>
-                <Link as={RouterLink} to='/'>
-                    <Text p={'2'} fontSize='2xl'>Home</Text>
-                </Link>
-                <ToggleThemeButton />
-            </HStack>
-            <VStack
+        <VStack
                 w={{ base: 'full', md: '50%' }}
                 h='full'
                 p={10}
@@ -65,8 +57,7 @@ const ShipmentOrdersLists = (): JSX.Element | null => {
                         .map(i =>
                             <CardModal key={i.id} item={i} /> 
                     )}
-            </VStack>
-        </Flex>
+        </VStack>
     )
 
 }
