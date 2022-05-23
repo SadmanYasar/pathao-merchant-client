@@ -4,6 +4,8 @@ import { db } from '../models/db'
 import { ShipmentOrder } from '../models/ShipmentOrder'
 import * as Yup from 'yup'
 import { InputControl, SelectControl } from 'formik-chakra-ui'
+import TextArea from './TextArea'
+import { useState } from 'react'
 
 /*
 ===============================================================
@@ -35,6 +37,7 @@ interface Props {
 }
 
 const ProductForm = (props: Props): JSX.Element => {
+    const [initialvalues, setinitialvalues] = useState(props.initialValues)
 
     const onSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
 
@@ -72,7 +75,8 @@ const ProductForm = (props: Props): JSX.Element => {
     return (
       <>
         <Formik
-          initialValues={props.initialValues}
+          enableReinitialize
+          initialValues={initialvalues}
           onSubmit={props.toAdd? onSubmit : handleUpdate}
           validationSchema={validationSchema}
         >
@@ -89,6 +93,7 @@ const ProductForm = (props: Props): JSX.Element => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onSubmit={handleSubmit as any}
           >
+            <TextArea setinitialvalues={setinitialvalues} />
             <SelectControl
               name='ItemType(*)'
               selectProps={{ placeholder: 'Select Item Type' }}
