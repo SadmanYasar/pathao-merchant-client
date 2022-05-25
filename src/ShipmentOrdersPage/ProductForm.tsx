@@ -5,7 +5,6 @@ import { ShipmentOrder } from '../models/ShipmentOrder'
 import * as Yup from 'yup'
 import { InputControl, SelectControl } from 'formik-chakra-ui'
 import { useState } from 'react'
-import TextBox from './TextBox'
 import TextArea from './TextArea'
 
 /*

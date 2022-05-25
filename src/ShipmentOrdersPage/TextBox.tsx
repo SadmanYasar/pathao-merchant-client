@@ -15,23 +15,6 @@ state.
 ==============================================
 */
 
-const initialValues: ShipmentOrder = {
-	'ItemType(*)': 'parcel',
-	'StoreName(*)': 'haha',
-  MerchantOrderId: '',
-  'RecipientName(*)': 'hmmmmm',
-	'RecipientPhone(*)': '',
-	'RecipientCity(*)': 'asssssss',
-	'RecipientZone(*)': 'wwww',
-  RecipientArea: '',
-	'RecipientAddress(*)': '',
-	'AmountToCollect(*)': 0,
-	'ItemQuantity(*)': 1,
-	'ItemWeight(*)': 0,
-	ItemDesc: '',
-  SpecialInstruction: ''
-}
-
 type UpdateKeyTypes = 'RecipientName(*)' | 'RecipientPhone(*)' | 'RecipientAddress(*)' | 'AmountToCollect(*)' | 'ItemWeight(*)'
 
 const keysToUpdate: UpdateKeyTypes[] = ['RecipientName(*)', 'RecipientPhone(*)', 'RecipientAddress(*)', 'AmountToCollect(*)', 'ItemWeight(*)']
