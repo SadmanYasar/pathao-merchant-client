@@ -5,7 +5,7 @@ import { ShipmentOrder } from '../models/ShipmentOrder'
 import * as Yup from 'yup'
 import { InputControl, SelectControl } from 'formik-chakra-ui'
 import { useState } from 'react'
-import TextArea from './TextArea'
+import TextBox from './TextBox'
 
 /*
 ===============================================================
@@ -93,7 +93,7 @@ const ProductForm = (props: Props): JSX.Element => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onSubmit={handleSubmit as any}
           >
-            <TextArea setinitialvalues={setinitialvalues} />
+            <TextBox initialValues={initialvalues} setinitialvalues={setinitialvalues} />
             <SelectControl
               name='ItemType(*)'
               selectProps={{ placeholder: 'Select Item Type' }}
