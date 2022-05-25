@@ -93,7 +93,7 @@ const ProductForm = (props: Props): JSX.Element => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onSubmit={handleSubmit as any}
           >
-            <TextBox setinitialvalues={setinitialvalues} />
+            <TextBox initialValues={initialvalues} setinitialvalues={setinitialvalues} />
             <SelectControl
               name='ItemType(*)'
               selectProps={{ placeholder: 'Select Item Type' }}
