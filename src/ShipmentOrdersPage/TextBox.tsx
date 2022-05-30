@@ -1,7 +1,7 @@
 import { Alert, Button, Textarea, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ShipmentOrder } from '../models/ShipmentOrder'
-import { UpdateKeyTypes } from '../types'
+import { newTypes, keysToUpdate } from '../utils/utils'
 
 interface Props {
     initialValues: ShipmentOrder;
@@ -15,18 +15,6 @@ Shipment type then set it to the initialValue
 state.
 ==============================================
 */
-
-const keysToUpdate: UpdateKeyTypes[] = ['RecipientName(*)', 'RecipientPhone(*)', 'RecipientAddress(*)', 'AmountToCollect(*)', 'ItemWeight(*)']
-
-const generateRegex = (x: string[]) => {
-  return x.map((val) => {
-    const string = `(?<=${val}(\\s{0,3}):).*`
-    return new RegExp(string, 'i')
-  })
-}
-
-const types = ['name', 'phone', 'address', 'due', 'weight']
-const newTypes = generateRegex(types)
 
 const TextBox = (props: Props) => {
   const [val, setVal] = useState<string>('')
