@@ -34,7 +34,7 @@ const SearchOrAddShipment = (): JSX.Element => {
             const result = lists?.filter(li => re.test(li.title))
             result ? setfilters(result) : setfilters([])
         } catch (error) {
-            console.log(error)
+            //console.log(error)
             //TODO - ADD ERROR COMPONENT TO DISPLAY THIS ERROR
         }
     }, [title, lists])

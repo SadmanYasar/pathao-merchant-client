@@ -11,25 +11,8 @@ import {
     Button,
     HStack,
 } from '@chakra-ui/react'
-import { ShipmentOrder } from '../models/ShipmentOrder'
+import { initialValues } from '../utils/utils'
 import ProductForm from './ProductForm'
-
-const initialValues: ShipmentOrder = {
-	'ItemType(*)': 'parcel',
-	'StoreName(*)': '',
-    MerchantOrderId: '',
-    'RecipientName(*)': '',
-	'RecipientPhone(*)': '',
-	'RecipientCity(*)': '',
-	'RecipientZone(*)': '',
-    RecipientArea: '',
-	'RecipientAddress(*)': '',
-	'AmountToCollect(*)': 0,
-	'ItemQuantity(*)': 1,
-	'ItemWeight(*)': 0,
-	ItemDesc: '',
-    SpecialInstruction: ''
-}
 
 interface AddProductModalProps {
     id: number;
