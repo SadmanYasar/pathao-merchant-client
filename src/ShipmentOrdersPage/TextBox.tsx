@@ -1,6 +1,7 @@
 import { Alert, Button, Textarea, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ShipmentOrder } from '../models/ShipmentOrder'
+import { UpdateKeyTypes } from '../types'
 
 interface Props {
     initialValues: ShipmentOrder;
@@ -14,8 +15,6 @@ Shipment type then set it to the initialValue
 state.
 ==============================================
 */
-
-type UpdateKeyTypes = 'RecipientName(*)' | 'RecipientPhone(*)' | 'RecipientAddress(*)' | 'AmountToCollect(*)' | 'ItemWeight(*)'
 
 const keysToUpdate: UpdateKeyTypes[] = ['RecipientName(*)', 'RecipientPhone(*)', 'RecipientAddress(*)', 'AmountToCollect(*)', 'ItemWeight(*)']
 
