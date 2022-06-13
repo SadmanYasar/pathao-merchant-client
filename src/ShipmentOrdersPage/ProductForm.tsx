@@ -42,7 +42,6 @@ const ProductForm = (props: Props): JSX.Element => {
     const onSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
 
       const formattedValues = validationSchema.cast(values) as ShipmentOrder
-      console.log(formattedValues)
 
       try {
         await db.shipmentOrders.add({

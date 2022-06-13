@@ -26,18 +26,13 @@ const TextBox = (props: Props) => {
 
   const handleClick = () => {
     const string = val.trim()
-    //console.log(newTypes)
-    //console.log(string)
     const matches = newTypes.map((t) => string.match(t)?.[0].trim())
-    //console.log(matches)
     const isNull = matches.some((m) => !m)
-    //console.log(isNull)
     if (isNull) return setshow(false)
     const initialValues = matches.reduce(
       (prev, current, i) => ({ ...prev, [keysToUpdate[i]]: current }),
       {}
     )
-    //console.log({...props.initialValues, ...initialValues})
     props.setinitialvalues({...props.initialValues, ...initialValues})
 
     setshow(true)
