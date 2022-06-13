@@ -45,10 +45,14 @@ const TextBox = (props: Props) => {
 
   return (
     <VStack spacing={5} paddingBottom='5'>
-      <Textarea value={val} onChange={handleChange} placeholder={'Paste text here'} size='lg' />
+      <Textarea 
+        value={val} 
+        onChange={handleChange} 
+        placeholder={'eg.\nname: Alto\nphone: 123\n address: your address\ndue: 0\nweight:0.5'} 
+        size='lg'
+        minHeight={40} />
       <Button onClick={handleClick} bg='red.400'>Set</Button>
-      {show && <Alert status='success'>Works!</Alert>}
-      {!show && <Alert status='error'>Missing field(s)</Alert>}
+      {!show && <Alert status='info'>{'Make sure the format is "Field Name: Value"'}</Alert>}
     </VStack>
   )
 }
