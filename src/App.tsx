@@ -8,6 +8,14 @@ import ShipmentListPage from './ShipmentListPage/index'
 import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
 
+const Notification = () => {
+
+  return(
+    <>
+    </>
+  )
+}
+
 const App = () => {
   /*
   ====================================
@@ -20,7 +28,9 @@ const App = () => {
    */
 
   return (
+
     <Container maxW="container.xl" p={0}>
+    <Notification />
     <Router>
       <Routes>
         <Route path='/' element={<ShipmentListPage />} />
