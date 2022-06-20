@@ -9,8 +9,14 @@ import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
 
 const App = () => {
-  /**
-   * TODO - Add error component
+  /*
+  ====================================
+   TODO - Add error component
+   TODO - Add persistent storage
+   TODO - Add search bar in order page
+   TODO - Add option to clear all data
+   TODO - Add option to upload CSV
+  ====================================
    */
 
   return (
