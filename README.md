@@ -3,7 +3,7 @@
 </h1>
 
 <div align="center">
-A CRUD application with search functionality that can also convert order data to a CSV file.
+Keep track of orders and quickly create CSV files using autofill from text input.
 </div>
 
 <div align="center">
@@ -34,12 +34,13 @@ A CRUD application with search functionality that can also convert order data to
 <tr>
 <td>
 
-This app was initially made for a business that gets orders from social network sites. Each order had to be copy pasted to the spreadsheet which was time consuming. With this app, it is easier to keep track of the orders and all the orders can be downloaded as a CSV file in one click which can be uploaded to the merchant panel.
+This app was initially made for a business that gets orders from social network sites. Each order had to be copy pasted to the spreadsheet which was time consuming. Using this app, it is easier to keep track of the orders and all the orders can be downloaded as a CSV file in one click which can be uploaded to the [merchant panel](https://merchant.pathao.com/). You can also paste a string in the text box which can autofill the form field values, saving time.
 
 Key features of **Pathao Merchant Client**:
 
 - Search, add or delete a shipment
 - Add, update or delete orders in a shipment
+- Autofill order form by pasting text related to an order
 - Download the whole shipment data as a CSV file that can be uploaded to Pathao Merchant Panel
 - Dark mode
 </td>
@@ -71,7 +72,7 @@ cd pathao-merchant-client
 ```
 npm install
 ```
-3. Start the project using npm or yarn
+4. Start the project using npm or yarn
 ```
 npm start
 ```
