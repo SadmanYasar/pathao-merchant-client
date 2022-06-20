@@ -5,14 +5,16 @@ import {
   Route,
 } from 'react-router-dom'
 import ShipmentListPage from './ShipmentListPage/index'
-import { Container } from '@chakra-ui/react'
+import { Alert, Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
+import { useStateValue } from './state'
 
 const Notification = () => {
-
+  const [state,] = useStateValue()
   return(
-    <>
-    </>
+    <Alert status='info' style={{display: state.message ? '' : 'none'}}>
+      {state.message}
+    </Alert>
   )
 }
 
