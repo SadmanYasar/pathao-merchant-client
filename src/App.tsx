@@ -1,28 +1,12 @@
-import React from 'react'
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from 'react-router-dom'
 import ShipmentListPage from './ShipmentListPage/index'
-import { Alert, CloseButton, Container } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
-import { removeNotification, useStateValue } from './state'
-
-const Notification = () => {
-  const [state, dispatch] = useStateValue()
-  return(
-    <Alert 
-      status={state.error ? 'error' : 'success'} 
-      style={{display: state.message ? '' : 'none',}}
-    >
-      {state.message}
-      <CloseButton
-        onClick={() => dispatch(removeNotification())}
-      />
-    </Alert>
-  )
-}
+import Notification from './components/Notification'
 
 const App = () => {
   /*
