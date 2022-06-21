@@ -4,10 +4,12 @@ import { Action } from "./reducer"
 
 export type State = {
   message: string;
+  error: boolean;
 }
 
 const initialState: State = {
-  message: ''
+  message: '',
+  error: false
 }
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([

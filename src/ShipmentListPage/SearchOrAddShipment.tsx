@@ -6,6 +6,7 @@ import { ShipmentList } from '../models/ShipmentList'
 import AddShipmentButton from '../components/AddShipmentButton'
 import SearchBar from '../components/SearchBar'
 import ShipmentLists from './ShipmentLists'
+import { setNotification, useStateValue } from '../state'
 
 const SearchOrAddShipment = (): JSX.Element => {
     const lists = useLiveQuery(
@@ -13,6 +14,8 @@ const SearchOrAddShipment = (): JSX.Element => {
             return db.shipmentLists.toArray()
         }
     )
+
+    const [, dispatch] = useStateValue()
 
     const [title, settitle] = useState<string>('')
     const [filters, setfilters] = useState<ShipmentList[]>([])
@@ -34,8 +37,7 @@ const SearchOrAddShipment = (): JSX.Element => {
             const result = lists?.filter(li => re.test(li.title))
             result ? setfilters(result) : setfilters([])
         } catch (error) {
-            //console.log(error)
-            //TODO - ADD ERROR COMPONENT TO DISPLAY THIS ERROR
+            //Do nothing
         }
     }, [title, lists])
 
@@ -48,8 +50,10 @@ const SearchOrAddShipment = (): JSX.Element => {
             await db.shipmentLists
                 .add({ title: title.trim() })
         } catch (e: unknown) {
-            console.log(e)
-            //TODO - ADD ERROR COMPONENT
+            dispatch(setNotification({
+                message: 'Could not add shipment',
+                error: true
+            }))
         }
     }
 

@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 import { InputControl, SelectControl } from 'formik-chakra-ui'
 import { useState } from 'react'
 import TextBox from './TextBox'
+import { setNotification, useStateValue } from '../state'
 
 /*
 ===============================================================
@@ -37,6 +38,7 @@ interface Props {
 }
 
 const ProductForm = (props: Props): JSX.Element => {
+    const [, dispatch] = useStateValue()
     const [initialvalues, setinitialvalues] = useState(props.initialValues)
 
     const onSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
@@ -49,10 +51,17 @@ const ProductForm = (props: Props): JSX.Element => {
           ...formattedValues
         })
 
+        dispatch(setNotification({
+          message: `Successfully added order by ${formattedValues['RecipientName(*)']}`,
+          error: false
+        }))
         resetForm()
 
       } catch (error: unknown) {
-        console.log(error)
+        dispatch(setNotification({
+          message: 'Could not add order',
+          error: true
+        }))
       }
     }
 
@@ -66,8 +75,16 @@ const ProductForm = (props: Props): JSX.Element => {
           {...formattedValues}
         )
 
+        dispatch(setNotification({
+          message: `Updated order by ${formattedValues['RecipientName(*)']}`,
+          error: false
+        }))
+
       } catch (error: unknown) {
-        console.log(error)
+        dispatch(setNotification({
+          message: 'Could not update order',
+          error: true
+        }))
       }
     }
 

@@ -5,15 +5,21 @@ import {
   Route,
 } from 'react-router-dom'
 import ShipmentListPage from './ShipmentListPage/index'
-import { Alert, Container } from '@chakra-ui/react'
+import { Alert, CloseButton, Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
-import { useStateValue } from './state'
+import { removeNotification, useStateValue } from './state'
 
 const Notification = () => {
-  const [state,] = useStateValue()
+  const [state, dispatch] = useStateValue()
   return(
-    <Alert status='info' style={{display: state.message ? '' : 'none'}}>
+    <Alert 
+      status={state.error ? 'error' : 'success'} 
+      style={{display: state.message ? '' : 'none',}}
+    >
       {state.message}
+      <CloseButton
+        onClick={() => dispatch(removeNotification())}
+      />
     </Alert>
   )
 }
@@ -21,7 +27,6 @@ const Notification = () => {
 const App = () => {
   /*
   ====================================
-   TODO - Add error component
    TODO - Add persistent storage
    TODO - Add search bar in order page
    TODO - Add option to clear all data
