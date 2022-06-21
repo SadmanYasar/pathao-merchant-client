@@ -36,6 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "testCI": "CI=true react-scripts test",
+    "cypress:open": "cypress open",
     "eject": "react-scripts eject",
     "lint": "eslint './src/**/*.{ts,tsx}'"
   },
@@ -60,6 +61,7 @@
   "devDependencies": {
     "@types/react-csv": "^1.1.2",
     "@types/react-test-renderer": "^17.0.2",
+    "cypress": "^10.1.0",
     "react-test-renderer": "^17.0.2"
   }
 }
