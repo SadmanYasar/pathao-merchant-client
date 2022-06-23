@@ -21,7 +21,7 @@ const EntryDetail = ({ item, visible } : EntryDetailProps) => {
                 {arr.map((i, index) => 
                     <Tr key={index}>
                         <Td>{i[0].replace('(*)', '')}</Td>
-                        <Td isNumeric>{i[1]}</Td>
+                        <Td>{i[1]}</Td>
                     </Tr>)}
                 </Tbody>
             </Table>
