@@ -12,7 +12,8 @@ const SearchBar = (props : SearchBarProps) => {
     return(
         <FormControl>
             <InputGroup>
-                <Input 
+                <Input
+                    data-cy='searchOrAddTitleInput' 
                     id='title' 
                     type='text' 
                     value={props.value}
