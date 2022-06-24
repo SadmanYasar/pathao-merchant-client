@@ -2,9 +2,10 @@ import { Button } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 
 const AddShipmentButton = () => {
-    return(
+    return (
         <motion.div whileTap={{ scale: 0.9 }}>
             <Button
+                data-cy='addShipmentButton'
                 size='lg'
                 w='full'
                 id='login-button'
@@ -12,7 +13,7 @@ const AddShipmentButton = () => {
                 bgColor={'red.400'}
                 _hover={{
                     bgColor: 'red.500'
-                
+
                 }}
                 _active={{
                     bgColor: 'red.500'

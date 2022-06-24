@@ -41,10 +41,10 @@ const SearchOrAddShipment = (): JSX.Element => {
         }
     }, [title, lists])
 
-    const handleSubmit = async (e : FormEvent<HTMLElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLElement>) => {
         e.preventDefault()
 
-        if(!title.trim()) return null
+        if (!title.trim()) return null
 
         try {
             await db.shipmentLists
@@ -62,9 +62,9 @@ const SearchOrAddShipment = (): JSX.Element => {
     }
 
     const colspan = 2
-    
-    return(
-        <Flex 
+
+    return (
+        <Flex
             flexDirection={'column'}
             height='full'
             py={[5, 10, 20]}
@@ -75,23 +75,23 @@ const SearchOrAddShipment = (): JSX.Element => {
                 p={10}
                 spacing={10}>
                 <Heading as={'h1'} size='2xl'>Shipments</Heading>
-                    <Box w={'full'}>
+                <Box w={'full'}>
                     <form onSubmit={handleSubmit}>
                         <SimpleGrid columns={2} columnGap={3} rowGap={6} w='full'>
                             <GridItem colSpan={colspan}>
-                                <SearchBar 
+                                <SearchBar
                                     onChange={({ target }) => settitle(target.value)}
                                     clearInput={handleClearButtonClick}
                                     value={title}
                                     visible={visible}
                                 />
                             </GridItem>
-                            <GridItem  colSpan={colspan}>
+                            <GridItem colSpan={colspan}>
                                 <AddShipmentButton />
                             </GridItem>
                         </SimpleGrid>
                     </form>
-                    </Box>
+                </Box>
                 <ShipmentLists list={filters} />
             </VStack>
         </Flex>

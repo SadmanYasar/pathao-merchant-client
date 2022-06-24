@@ -8,14 +8,14 @@ interface SearchBarProps {
     onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
-const SearchBar = (props : SearchBarProps) => {
-    return(
+const SearchBar = (props: SearchBarProps) => {
+    return (
         <FormControl>
             <InputGroup>
                 <Input
-                    data-cy='searchOrAddTitleInput' 
-                    id='title' 
-                    type='text' 
+                    data-cy='searchOrAddTitleInput'
+                    id='title'
+                    type='text'
                     value={props.value}
                     size='lg'
                     onChange={props.onChange}

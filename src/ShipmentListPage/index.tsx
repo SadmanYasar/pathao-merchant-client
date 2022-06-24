@@ -3,7 +3,7 @@ import ToggleThemeButton from '../components/ToggleThemeButton'
 import SearchOrAddShipment from './SearchOrAddShipment'
 
 const ShipmentListPage = () => {
-    return(
+    return (
         <Flex
             flexDirection={'column'}
             w='full'

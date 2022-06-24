@@ -5,7 +5,7 @@ import ToggleThemeButton from '../components/ToggleThemeButton'
 import ShipmentOrdersLists from './ShipmentOrderLists'
 
 const ShipmentOrdersPage = () => {
-    return(
+    return (
         <Flex flexDirection={'column'} w='full' h='100vh' alignItems={'center'}>
             <HStack paddingLeft={4} w={'full'}>
                 <Link as={RouterLink} to='/'>

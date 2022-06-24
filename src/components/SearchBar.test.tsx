@@ -4,17 +4,17 @@ import SearchBar from './SearchBar'
 const mock1 = jest.fn()
 const mock2 = jest.fn()
 
-describe('<SearchBar />', () => { 
-    it('renders correctly', () => {
-        const tree = Renderer.create(
-            <SearchBar 
-                value='' 
-                visible={true}
-                clearInput={mock1}
-                onChange={mock2}
-            />)
+describe('<SearchBar />', () => {
+  it('renders correctly', () => {
+    const tree = Renderer.create(
+      <SearchBar
+        value=''
+        visible={true}
+        clearInput={mock1}
+        onChange={mock2}
+      />)
 
-        expect(tree).toMatchInlineSnapshot(`
+    expect(tree).toMatchInlineSnapshot(`
 <div
   className="chakra-form-control css-0"
   role="group"
@@ -58,5 +58,5 @@ describe('<SearchBar />', () => {
   </div>
 </div>
 `)
-    })
+  })
 })

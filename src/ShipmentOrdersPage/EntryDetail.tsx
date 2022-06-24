@@ -7,32 +7,32 @@ interface EntryDetailProps {
     visible: boolean;
 }
 
-const EntryDetail = ({ item, visible } : EntryDetailProps) => {
+const EntryDetail = ({ item, visible }: EntryDetailProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { id, shipmentListId, MerchantOrderId, ...rest } = item
     const arr = Object.entries(rest)
-    return(
+    return (
         <Box>
-        {visible && 
-        <>
-        <TableContainer>
-            <Table variant='striped' colorScheme='red'>
-                <Tbody>
-                {arr.map((i, index) => 
-                    <Tr key={index}>
-                        <Td>{i[0].replace('(*)', '')}</Td>
-                        <Td>{i[1]}</Td>
-                    </Tr>)}
-                </Tbody>
-            </Table>
-        </TableContainer>
-        </>}
-        {!visible &&
-        <>
-            <Button form='product-form' type='submit'>Update</Button>
-            <ProductForm initialValues={item} toAdd={false} id={id} />
-        </>
-        }
+            {visible &&
+                <>
+                    <TableContainer>
+                        <Table variant='striped' colorScheme='red'>
+                            <Tbody>
+                                {arr.map((i, index) =>
+                                    <Tr key={index}>
+                                        <Td>{i[0].replace('(*)', '')}</Td>
+                                        <Td>{i[1]}</Td>
+                                    </Tr>)}
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
+                </>}
+            {!visible &&
+                <>
+                    <Button form='product-form' type='submit'>Update</Button>
+                    <ProductForm initialValues={item} toAdd={false} id={id} />
+                </>
+            }
         </Box>
     )
 }

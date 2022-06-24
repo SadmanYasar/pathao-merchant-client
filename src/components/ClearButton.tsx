@@ -8,14 +8,14 @@ interface ClearButtonProps {
 }
 
 const ClearButton = ({ visible, onClick }: ClearButtonProps) => {
-    return(
+    return (
         <>
-            {visible && <Button 
-                            colorScheme='red' 
-                            variant='link'
-                            onClick={onClick}>
-                            <CloseIcon />
-                        </Button>}
+            {visible && <Button
+                colorScheme='red'
+                variant='link'
+                onClick={onClick}>
+                <CloseIcon />
+            </Button>}
         </>
     )
 }

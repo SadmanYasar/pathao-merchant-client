@@ -17,86 +17,86 @@ But might need to change later
 */
 const validationSchema = Yup.object({
   'ItemType(*)': Yup.string().required('Item Type is required'),
-	'StoreName(*)': Yup.string().required('Store name is required').trim(),
+  'StoreName(*)': Yup.string().required('Store name is required').trim(),
   'RecipientName(*)': Yup.string().required('Recipient Name is required').trim(),
-	'RecipientPhone(*)': Yup.string().required('Recipient Phone is required').trim(),
-	'RecipientCity(*)': Yup.string().required('Recipient City is required').trim(),
-	'RecipientZone(*)': Yup.string().trim(),
-	'RecipientAddress(*)': Yup.string().required('Recipient Address is required').trim(),
-	'AmountToCollect(*)': Yup.number().required('Must be 0 or greater').min(0),
-	'ItemQuantity(*)': Yup.number().required('Must be 1 or greater').min(1),
-	'ItemWeight(*)': Yup.number().required('Must be 0.5 or greater').min(0.5),
-	ItemDesc: Yup.string().required().trim(),
+  'RecipientPhone(*)': Yup.string().required('Recipient Phone is required').trim(),
+  'RecipientCity(*)': Yup.string().required('Recipient City is required').trim(),
+  'RecipientZone(*)': Yup.string().trim(),
+  'RecipientAddress(*)': Yup.string().required('Recipient Address is required').trim(),
+  'AmountToCollect(*)': Yup.number().required('Must be 0 or greater').min(0),
+  'ItemQuantity(*)': Yup.number().required('Must be 1 or greater').min(1),
+  'ItemWeight(*)': Yup.number().required('Must be 0.5 or greater').min(0.5),
+  ItemDesc: Yup.string().required().trim(),
 })
 
 interface Props {
   id?: number;
   toAdd: boolean;
   initialValues: ShipmentOrder;
-	shipmentListId?: number;
+  shipmentListId?: number;
   onClose?: () => void;
 }
 
 const ProductForm = (props: Props): JSX.Element => {
-    const [, dispatch] = useStateValue()
-    const [initialvalues, setinitialvalues] = useState(props.initialValues)
+  const [, dispatch] = useStateValue()
+  const [initialvalues, setinitialvalues] = useState(props.initialValues)
 
-    const onSubmit = async (values: ShipmentOrder, { resetForm } : { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
+  const onSubmit = async (values: ShipmentOrder, { resetForm }: { resetForm: (nextState?: Partial<FormikState<ShipmentOrder>> | undefined) => void }) => {
 
-      const formattedValues = validationSchema.cast(values) as ShipmentOrder
+    const formattedValues = validationSchema.cast(values) as ShipmentOrder
 
-      try {
-        await db.shipmentOrders.add({
+    try {
+      await db.shipmentOrders.add({
         shipmentListId: props.shipmentListId,
-          ...formattedValues
-        })
+        ...formattedValues
+      })
 
-        dispatch(setNotification({
-          message: `Successfully added order by ${formattedValues['RecipientName(*)']}`,
-          error: false
-        }))
-        resetForm()
+      dispatch(setNotification({
+        message: `Successfully added order by ${formattedValues['RecipientName(*)']}`,
+        error: false
+      }))
+      resetForm()
 
-      } catch (error: unknown) {
-        dispatch(setNotification({
-          message: 'Could not add order',
-          error: true
-        }))
-      }
+    } catch (error: unknown) {
+      dispatch(setNotification({
+        message: 'Could not add order',
+        error: true
+      }))
     }
+  }
 
-    const handleUpdate = async (values: ShipmentOrder) => {
+  const handleUpdate = async (values: ShipmentOrder) => {
 
-      const formattedValues = validationSchema.cast(values) as ShipmentOrder
+    const formattedValues = validationSchema.cast(values) as ShipmentOrder
 
-      try {
-        await db.shipmentOrders.update(
-          Number(props.id),
-          {...formattedValues}
-        )
+    try {
+      await db.shipmentOrders.update(
+        Number(props.id),
+        { ...formattedValues }
+      )
 
-        dispatch(setNotification({
-          message: `Updated order by ${formattedValues['RecipientName(*)']}`,
-          error: false
-        }))
+      dispatch(setNotification({
+        message: `Updated order by ${formattedValues['RecipientName(*)']}`,
+        error: false
+      }))
 
-      } catch (error: unknown) {
-        dispatch(setNotification({
-          message: 'Could not update order',
-          error: true
-        }))
-      }
+    } catch (error: unknown) {
+      dispatch(setNotification({
+        message: 'Could not update order',
+        error: true
+      }))
     }
+  }
 
-    return (
-      <>
-        <Formik
-          enableReinitialize
-          initialValues={initialvalues}
-          onSubmit={props.toAdd? onSubmit : handleUpdate}
-          validationSchema={validationSchema}
-        >
-          {({ handleSubmit }) => (
+  return (
+    <>
+      <Formik
+        enableReinitialize
+        initialValues={initialvalues}
+        onSubmit={props.toAdd ? onSubmit : handleUpdate}
+        validationSchema={validationSchema}
+      >
+        {({ handleSubmit }) => (
           <Box
             borderWidth='1px'
             rounded='lg'
@@ -128,9 +128,9 @@ const ProductForm = (props: Props): JSX.Element => {
             <InputControl name='ItemWeight(*)' label='Item Weight' />
             <InputControl name='ItemDesc' label='Item Description' />
           </Box>)}
-        </Formik>
-      </>
-    )
+      </Formik>
+    </>
+  )
 }
 
 export default ProductForm

@@ -21,13 +21,13 @@ const App = () => {
   return (
 
     <Container maxW="container.xl" p={0}>
-    <Notification />
-    <Router>
-      <Routes>
-        <Route path='/' element={<ShipmentListPage />} />
-        <Route path='/shipments/:id' element={<ShipmentOrdersPage />} />
-      </Routes>
-    </Router>
+      <Notification />
+      <Router>
+        <Routes>
+          <Route path='/' element={<ShipmentListPage />} />
+          <Route path='/shipments/:id' element={<ShipmentOrdersPage />} />
+        </Routes>
+      </Router>
     </Container>
   )
 }

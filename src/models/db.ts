@@ -5,7 +5,7 @@ import { ShipmentOrder } from './ShipmentOrder'
 
 export class ShipmentDB extends Dexie {
   shipmentLists!: Table<ShipmentList, number>
-  shipmentOrders!: Table<ShipmentOrder, number> 
+  shipmentOrders!: Table<ShipmentOrder, number>
 
   constructor() {
     super('ShipmentDB')

@@ -4,8 +4,8 @@ import { ShipmentOrder } from '../models/ShipmentOrder'
 import { newTypes, keysToUpdate } from '../utils/utils'
 
 interface Props {
-    initialValues: ShipmentOrder;
-    setinitialvalues: React.Dispatch<React.SetStateAction<ShipmentOrder>>;
+  initialValues: ShipmentOrder;
+  setinitialvalues: React.Dispatch<React.SetStateAction<ShipmentOrder>>;
 }
 
 /*
@@ -33,17 +33,17 @@ const TextBox = (props: Props) => {
       (prev, current, i) => ({ ...prev, [keysToUpdate[i]]: current }),
       {}
     )
-    props.setinitialvalues({...props.initialValues, ...initialValues})
+    props.setinitialvalues({ ...props.initialValues, ...initialValues })
 
     setshow(true)
   }
 
   return (
     <VStack spacing={5} paddingBottom='5'>
-      <Textarea 
-        value={val} 
-        onChange={handleChange} 
-        placeholder={'eg.\nname: Alto\nphone: 123\naddress: your address\ndue: 0\nweight:0.5'} 
+      <Textarea
+        value={val}
+        onChange={handleChange}
+        placeholder={'eg.\nname: Alto\nphone: 123\naddress: your address\ndue: 0\nweight:0.5'}
         size='lg'
         minHeight={40} />
       <Button onClick={handleClick} bg='red.400'>Set</Button>
