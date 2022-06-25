@@ -8,7 +8,7 @@ import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
 import Notification from './components/Notification'
 import { useEffect } from 'react'
-import { isStoragePersisted, persist } from './utils/utils'
+//import { isStoragePersisted, persist } from './utils/utils'
 
 const App = () => {
   /*
@@ -23,13 +23,14 @@ const App = () => {
   useEffect(() => {
     const initStorage = async () => {
       try {
-        const isStoragePersistent = await isStoragePersisted()
+        await navigator.storage.persist()
+        /* const isStoragePersistent = await isStoragePersisted()
 
         if(isStoragePersistent) return null
 
         //initStoragePersistence()
         const isPersisted = await persist()
-        console.log(isPersisted)
+        console.log(isPersisted) */
 
       } catch (error) {
         console.log(error)
