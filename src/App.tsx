@@ -7,6 +7,8 @@ import ShipmentListPage from './ShipmentListPage/index'
 import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
 import Notification from './components/Notification'
+import { useEffect } from 'react'
+import { initStoragePersistence, isStoragePersisted, persist } from './utils/utils'
 
 const App = () => {
   /*
@@ -18,6 +20,25 @@ const App = () => {
   ====================================
    */
 
+  useEffect(() => {
+    const initStorage = async () => {
+      try {
+        const isStoragePersistent = await isStoragePersisted()
+
+        if(isStoragePersistent) return null
+
+        //initStoragePersistence()
+        const isPersisted = await persist()
+        console.log(isPersisted)
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    
+    initStorage()
+  }, [])
+  
   return (
 
     <Container maxW="container.xl" p={0}>
