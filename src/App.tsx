@@ -8,7 +8,7 @@ import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
 import Notification from './components/Notification'
 import { useEffect } from 'react'
-import { initStoragePersistence, isStoragePersisted, persist } from './utils/utils'
+import { isStoragePersisted, persist } from './utils/utils'
 
 const App = () => {
   /*
