@@ -8,9 +8,12 @@ import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
 import Notification from './components/Notification'
 import { useEffect } from 'react'
-//import { isStoragePersisted, persist } from './utils/utils'
+import { initStoragePersistence, isStoragePersisted } from './utils/utils'
+import { setNotification, useStateValue } from './state'
 
 const App = () => {
+  const [, dispatch] = useStateValue()
+
   /*
   ====================================
    TODO - Add persistent storage
@@ -21,19 +24,38 @@ const App = () => {
    */
 
   useEffect(() => {
+    /*
+    ============================
+    Persistent only when user
+    bookmarks
+    ============================
+    */
     const initStorage = async () => {
       try {
-        await navigator.storage.persist()
-        /* const isStoragePersistent = await isStoragePersisted()
-
+        const isStoragePersistent = await isStoragePersisted()
         if(isStoragePersistent) return null
 
-        //initStoragePersistence()
-        const isPersisted = await persist()
-        console.log(isPersisted) */
+        await initStoragePersistence()
+        
+        const isPersisted = await isStoragePersisted()
+        
+        console.log(isPersisted)
+
+        if(!isPersisted) {
+          dispatch(setNotification({
+            message: 'Bookmark this page to get persistent storage',
+            type: 'info'
+          }))
+        }
+
+        //const persisted = await persist()
+        //console.log(persisted)
 
       } catch (error) {
-        console.log(error)
+        dispatch(setNotification({
+          message: 'We are having difficulties loading data',
+          type: 'error'
+      }))
       }
     }
     

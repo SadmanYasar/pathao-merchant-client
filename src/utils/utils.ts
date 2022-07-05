@@ -31,18 +31,18 @@ export const keysToUpdate: UpdateKeyTypes[] = ['RecipientName(*)', 'RecipientPho
 export const newTypes = generateRegex(types)
 
 /** Check if storage is persisted already.
-  @returns {Promise<boolean>} Promise resolved with true if current origin is
+  @returns {Promise<boolean | undefined>} Promise resolved with true if current origin is
   using persistent storage, false if not, and undefined if the API is not
   present.
 */
-export async function isStoragePersisted() {
+export async function isStoragePersisted(): Promise<boolean | undefined> {
    return await navigator.storage && navigator.storage.persisted ?
       navigator.storage.persisted() :
       undefined
 }
 
 /** Tries to convert to persisted storage.
-  @returns {Promise<boolean>} Promise resolved with true if successfully
+  @returns {Promise<boolean | undefined>} Promise resolved with true if successfully
   persisted the storage, false if not, and undefined if the API is not present.
 */
 export async function persist() {
@@ -99,16 +99,16 @@ async function tryPersistWithoutPromtingUser() {
 }
 
 export async function initStoragePersistence() {
-   const persist = await tryPersistWithoutPromtingUser()
-   switch (persist) {
+   const Persist = await tryPersistWithoutPromtingUser()
+   switch (Persist) {
       case "never":
          console.log("Not possible to persist storage")
          break
       case "persisted":
-         console.log("Successfully persisted storage silently")
+         console.log("Successfully persisted storage")
          break
       case "prompt":
-         console.log("Not persisted, but we may prompt user when we want to.")
+         await persist()
          break
    }
 } 

@@ -6,7 +6,7 @@ const Notification = () => {
   const [state, dispatch] = useStateValue()
   return (
     <Alert
-      status={state.error ? 'error' : 'success'}
+      status={state.type}
       style={{ display: state.message ? '' : 'none', }}
     >
       {state.message}
