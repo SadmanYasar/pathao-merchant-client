@@ -3,10 +3,7 @@ import { State } from "./state"
 export type Action =
   | {
     type: "SET_NOTIFICATION";
-    payload: {
-      message: string,
-      error: boolean
-    };
+    payload: State;
   }
   | {
     type: "REMOVE_NOTIFICATION";
@@ -17,13 +14,13 @@ export const reducer = (state: State, action: Action): State => {
     case "SET_NOTIFICATION":
       return {
         message: action.payload.message,
-        error: action.payload.error
+        type: action.payload.type
       }
 
     case "REMOVE_NOTIFICATION":
       return {
         message: '',
-        error: false
+        type: 'success'
       }
 
     default:
@@ -31,12 +28,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 }
 
-interface setNotificationPropType {
-  message: string,
-  error: boolean
-}
-
-export const setNotification = (data: setNotificationPropType): Action => {
+export const setNotification = (data: State): Action => {
   return {
     type: "SET_NOTIFICATION",
     payload: data,

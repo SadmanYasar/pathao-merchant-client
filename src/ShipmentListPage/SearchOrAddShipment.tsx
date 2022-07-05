@@ -52,7 +52,7 @@ const SearchOrAddShipment = (): JSX.Element => {
         } catch (e: unknown) {
             dispatch(setNotification({
                 message: 'Could not add shipment',
-                error: true
+                type: 'error'
             }))
         }
     }

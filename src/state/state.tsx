@@ -2,14 +2,16 @@ import React, { createContext, useContext, useReducer } from "react"
 
 import { Action } from "./reducer"
 
+export type NotificationType = "warning" | "error" | "success" | "info"
+
 export type State = {
   message: string;
-  error: boolean;
+  type: NotificationType
 }
 
 const initialState: State = {
   message: '',
-  error: false
+  type: 'success'
 }
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([

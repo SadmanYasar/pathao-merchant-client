@@ -7,8 +7,13 @@ import ShipmentListPage from './ShipmentListPage/index'
 import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
 import Notification from './components/Notification'
+import { useEffect } from 'react'
+import { initStoragePersistence, isStoragePersisted } from './utils/utils'
+import { setNotification, useStateValue } from './state'
 
 const App = () => {
+  const [, dispatch] = useStateValue()
+
   /*
   ====================================
    TODO - Add persistent storage
@@ -17,6 +22,45 @@ const App = () => {
    TODO - Add option to upload CSV
   ====================================
    */
+
+  useEffect(() => {
+    /*
+    ============================
+    Persistent only when user
+    bookmarks
+    ============================
+    */
+    const initStorage = async () => {
+      try {
+        const isStoragePersistent = await isStoragePersisted()
+        if(isStoragePersistent) return null
+
+        await initStoragePersistence()
+
+        const isPersisted = await isStoragePersisted()
+
+        console.log(isPersisted)
+
+        if(!isPersisted) {
+          dispatch(setNotification({
+            message: 'Bookmark this page to get persistent storage',
+            type: 'info'
+          }))
+        }
+
+        //const persisted = await persist()
+        //console.log(persisted)
+
+      } catch (error) {
+        dispatch(setNotification({
+          message: 'We are having difficulties loading data',
+          type: 'error'
+      }))
+      }
+    }
+
+    initStorage()
+  }, [])
 
   return (
 

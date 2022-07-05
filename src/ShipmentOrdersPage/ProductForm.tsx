@@ -53,14 +53,14 @@ const ProductForm = (props: Props): JSX.Element => {
 
       dispatch(setNotification({
         message: `Successfully added order by ${formattedValues['RecipientName(*)']}`,
-        error: false
+        type: 'success'
       }))
       resetForm()
 
     } catch (error: unknown) {
       dispatch(setNotification({
         message: 'Could not add order',
-        error: true
+        type: 'error'
       }))
     }
   }
@@ -77,13 +77,13 @@ const ProductForm = (props: Props): JSX.Element => {
 
       dispatch(setNotification({
         message: `Updated order by ${formattedValues['RecipientName(*)']}`,
-        error: false
+        type: 'success'
       }))
 
     } catch (error: unknown) {
       dispatch(setNotification({
         message: 'Could not update order',
-        error: true
+        type: 'success'
       }))
     }
   }
