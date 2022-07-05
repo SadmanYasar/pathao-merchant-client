@@ -36,9 +36,9 @@ const App = () => {
         if(isStoragePersistent) return null
 
         await initStoragePersistence()
-        
+
         const isPersisted = await isStoragePersisted()
-        
+
         console.log(isPersisted)
 
         if(!isPersisted) {
@@ -58,10 +58,10 @@ const App = () => {
       }))
       }
     }
-    
+
     initStorage()
   }, [])
-  
+
   return (
 
     <Container maxW="container.xl" p={0}>
