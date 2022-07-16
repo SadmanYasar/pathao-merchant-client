@@ -10,7 +10,6 @@ const generateRegex = (x: string[]) => {
 
 const types = ['name', 'phone', 'address', 'due', 'weight']
 
-
 export const initialValues: ShipmentOrder = {
    'ItemType(*)': 'parcel',
    'StoreName(*)': '',

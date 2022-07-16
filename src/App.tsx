@@ -6,7 +6,6 @@ import {
 import ShipmentListPage from './ShipmentListPage/index'
 import { Container } from '@chakra-ui/react'
 import ShipmentOrdersPage from './ShipmentOrdersPage'
-import Notification from './components/Notification'
 import { useEffect } from 'react'
 import { initStoragePersistence, isStoragePersisted } from './utils/utils'
 import { setNotification, useStateValue } from './state'
@@ -16,7 +15,6 @@ const App = () => {
 
   /*
   ====================================
-   TODO - Add persistent storage
    TODO - Add search bar in order page
    TODO - Add option to clear all data
    TODO - Add option to upload CSV
@@ -33,23 +31,19 @@ const App = () => {
     const initStorage = async () => {
       try {
         const isStoragePersistent = await isStoragePersisted()
+
         if(isStoragePersistent) return null
 
         await initStoragePersistence()
         
         const isPersisted = await isStoragePersisted()
         
-        console.log(isPersisted)
-
         if(!isPersisted) {
           dispatch(setNotification({
             message: 'Bookmark this page to get persistent storage',
             type: 'info'
           }))
         }
-
-        //const persisted = await persist()
-        //console.log(persisted)
 
       } catch (error) {
         dispatch(setNotification({
@@ -65,7 +59,6 @@ const App = () => {
   return (
 
     <Container maxW="container.xl" p={0}>
-      <Notification />
       <Router>
         <Routes>
           <Route path='/' element={<ShipmentListPage />} />
