@@ -3,6 +3,7 @@ import { Flex, HStack, Link, Text } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import ToggleThemeButton from '../components/ToggleThemeButton'
 import ShipmentOrdersLists from './ShipmentOrderLists'
+import Notification from '../components/Notification'
 
 const ShipmentOrdersPage = () => {
     return (
@@ -13,6 +14,7 @@ const ShipmentOrdersPage = () => {
                 </Link>
                 <ToggleThemeButton />
             </HStack>
+            <Notification />
             <ShipmentOrdersLists />
         </Flex>
     )

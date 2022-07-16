@@ -10,8 +10,8 @@ interface Props {
 
 /*
 ==============================================
-Take the inputs from text and map matches to 
-Shipment type then set it to the initialValue 
+Take the inputs from text and map matches to
+Shipment type then set it to the initialValue
 state.
 ==============================================
 */
@@ -43,7 +43,7 @@ const TextBox = (props: Props) => {
       <Textarea
         value={val}
         onChange={handleChange}
-        placeholder={'eg.\nname: Alto\nphone: 123\naddress: your address\ndue: 0\nweight:0.5'}
+        placeholder={'eg.\nname: Alto\nphone: 123\naddress: your address\ndue: 0\nweight: 0.5'}
         size='lg'
         minHeight={40} />
       <Button onClick={handleClick} bg='red.400'>Set</Button>

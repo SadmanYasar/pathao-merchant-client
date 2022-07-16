@@ -10,9 +10,8 @@ import { setNotification, useStateValue } from '../state'
 
 /*
 ===============================================================
-Recipient zone is kept not required
+Recipient zone and address are kept as not required
 Need to add feature where zone can be chosen from address input
-But might need to change later
 ===============================================================
 */
 const validationSchema = Yup.object({
@@ -22,7 +21,7 @@ const validationSchema = Yup.object({
   'RecipientPhone(*)': Yup.string().required('Recipient Phone is required').trim(),
   'RecipientCity(*)': Yup.string().required('Recipient City is required').trim(),
   'RecipientZone(*)': Yup.string().trim(),
-  'RecipientAddress(*)': Yup.string().required('Recipient Address is required').trim(),
+  'RecipientAddress(*)': Yup.string().trim(),
   'AmountToCollect(*)': Yup.number().required('Must be 0 or greater').min(0),
   'ItemQuantity(*)': Yup.number().required('Must be 1 or greater').min(1),
   'ItemWeight(*)': Yup.number().required('Must be 0.5 or greater').min(0.5),
