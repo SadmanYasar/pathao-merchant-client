@@ -37,7 +37,7 @@ const App = () => {
         await initStoragePersistence()
 
         const isPersisted = await isStoragePersisted()
-        
+
         if(!isPersisted) {
           dispatch(setNotification({
             message: 'Bookmark this page to get persistent storage',

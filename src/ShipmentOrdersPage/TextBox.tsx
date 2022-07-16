@@ -10,8 +10,8 @@ interface Props {
 
 /*
 ==============================================
-Take the inputs from text and map matches to 
-Shipment type then set it to the initialValue 
+Take the inputs from text and map matches to
+Shipment type then set it to the initialValue
 state.
 ==============================================
 */
