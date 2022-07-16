@@ -110,4 +110,4 @@ export async function initStoragePersistence() {
          await persist()
          break
    }
-} 
+}
